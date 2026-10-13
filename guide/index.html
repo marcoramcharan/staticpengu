@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StaticPengu — Deployment Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #ffe9c7;
+      background-image: radial-gradient(circle at 20% 30%, #fff4e6 0%, #ffe1b4 80%);
+      font-family: 'Fredoka', 'Quicksand', 'Segoe UI', system-ui, sans-serif;
+      font-weight: 500;
+      color: #1e1a2b;
+      padding: 40px 20px 80px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ---------- HEADER ---------- */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: inline-block;
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: #1e1a2b;
+      background: #ffd966;
+      padding: 6px 28px 8px 22px;
+      border: 5px solid #1e1a2b;
+      border-radius: 100px;
+      box-shadow: 5px 5px 0 #1e1a2b;
+      transform: rotate(-1.5deg);
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+
+    .brand span {
+      color: #ff5e5e;
+      text-shadow: 2px 2px 0 #1e1a2b;
+      -webkit-text-stroke: 1px #1e1a2b;
+    }
+
+    .brand::before {
+      content: "🐧";
+      font-size: 36px;
+      margin-right: 12px;
+      display: inline-block;
+      vertical-align: middle;
+      transform: scaleX(-1);
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      font-weight: 900;
+      color: #1e1a2b;
+      text-shadow: 4px 4px 0 #ffb347;
+      -webkit-text-stroke: 1.5px #1e1a2b;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      font-weight: 600;
+      color: #3d3552;
+      background: #e0d7ff;
+      display: inline-block;
+      padding: 8px 22px;
+      border-radius: 40px;
+      border: 3px solid #1e1a2b;
+      box-shadow: 3px 3px 0 #1e1a2b;
+    }
+
+    /* ---------- CARDS ---------- */
+    .card {
+      background: #fffaee;
+      border: 6px solid #1e1a2b;
+      border-radius: 36px;
+      box-shadow: 10px 10px 0 #1e1a2b, 0 10px 20px rgba(0,0,0,0.1);
+      padding: 32px 30px;
+      margin-bottom: 32px;
+    }
+
+    .card h2 {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #1e1a2b;
+      text-shadow: 2px 2px 0 #ffd966;
+      -webkit-text-stroke: 0.8px #1e1a2b;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin: 22px 0 10px;
+      color: #1e1a2b;
+    }
+
+    .card p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #2e2a3a;
+      margin-bottom: 14px;
+    }
+
+    .card ul, .card ol {
+      margin: 10px 0 14px 24px;
+      font-size: 16px;
+      color: #2e2a3a;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+    }
+
+    /* ---------- CALLOUTS ---------- */
+    .callout {
+      border: 5px solid #1e1a2b;
+      border-radius: 26px;
+      padding: 18px 22px;
+      margin: 18px 0;
+      box-shadow: 5px 5px 0 #1e1a2b;
+      font-weight: 600;
+    }
+
+    .callout.warn {
+      background: #ffc9c9;
+      color: #7a1717;
+    }
+
+    .callout.good {
+      background: #b8f0c5;
+      color: #0b5523;
+    }
+
+    .callout.info {
+      background: #d6f0ff;
+      color: #10435e;
+    }
+
+    .callout .label {
+      display: inline-block;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #1e1a2b;
+      color: #fffaee;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    /* ---------- CODE ---------- */
+    pre {
+      background: #1e1a2b;
+      color: #ffe9c7;
+      border: 4px solid #1e1a2b;
+      border-radius: 20px;
+      padding: 18px 20px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.55;
+      overflow-x: auto;
+      margin: 12px 0 18px;
+      box-shadow: inset 0 0 0 2px #3a3454;
+    }
+
+    code {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      background: #ffe9c7;
+      border: 2px solid #1e1a2b;
+      border-radius: 8px;
+      padding: 2px 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #b3306a;
+    }
+
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: inherit;
+      font-weight: 500;
+    }
+
+    /* ---------- TABLE ---------- */
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 5px solid #1e1a2b;
+      border-radius: 22px;
+      overflow: hidden;
+      margin: 16px 0;
+      box-shadow: 5px 5px 0 #1e1a2b;
+      font-size: 15px;
+    }
+
+    th {
+      background: #ffd966;
+      color: #1e1a2b;
+      font-weight: 900;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 4px solid #1e1a2b;
+      letter-spacing: -0.3px;
+    }
+
+    td {
+      padding: 11px 16px;
+      background: #fffaee;
+      border-bottom: 2px solid #e6dcc4;
+      color: #2e2a3a;
+      font-weight: 500;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td code {
+      font-size: 13px;
+    }
+
+    /* ---------- CHECKLIST ---------- */
+    .checklist {
+      list-style: none;
+      margin: 12px 0;
+      padding: 0;
+    }
+
+    .checklist li {
+      background: #fff7e0;
+      border: 3px solid #1e1a2b;
+      border-radius: 18px;
+      padding: 10px 16px 10px 46px;
+      margin-bottom: 8px;
+      position: relative;
+      font-weight: 600;
+      box-shadow: 3px 3px 0 #1e1a2b;
+    }
+
+    .checklist li::before {
+      content: "🐧";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+    }
+
+    /* ---------- TREE ---------- */
+    .tree {
+      background: #fff7e0;
+      border: 4px dashed #1e1a2b;
+      border-radius: 20px;
+      padding: 18px 22px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e1a2b;
+      line-height: 1.7;
+      margin: 12px 0 18px;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq {
+      border-top: 4px dashed #1e1a2b;
+      padding-top: 16px;
+      margin-top: 18px;
+    }
+
+    .faq details {
+      border: 4px solid #1e1a2b;
+      border-radius: 20px;
+      padding: 14px 20px;
+      margin-bottom: 12px;
+      background: #fff7e0;
+      box-shadow: 4px 4px 0 #1e1a2b;
+      cursor: pointer;
+    }
+
+    .faq summary {
+      font-weight: 900;
+      font-size: 16px;
+      color: #1e1a2b;
+      list-style: none;
+      outline: none;
+    }
+
+    .faq summary::-webkit-details-marker { display: none; }
+
+    .faq summary::before {
+      content: "▶";
+      display: inline-block;
+      margin-right: 10px;
+      transition: transform 0.15s ease;
+      color: #ff5e5e;
+      font-size: 12px;
+    }
+
+    .faq details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .faq details p {
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #3d3552;
+    }
+
+    .footer a {
+      color: #1e1a2b;
+      font-weight: 900;
+      background: #ffdb7c;
+      padding: 6px 18px;
+      border-radius: 40px;
+      border: 3px solid #1e1a2b;
+      text-decoration: none;
+      box-shadow: 3px 3px 0 #1e1a2b;
+      transition: 0.1s;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    .footer a:hover {
+      background: #ffc107;
+      transform: translateY(-2px);
+      box-shadow: 5px 5px 0 #1e1a2b;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 24px 20px; border-radius: 28px; }
+      .card h2 { font-size: 24px; }
+      pre { font-size: 12px; padding: 14px; }
+      th, td { padding: 9px 10px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand">static<span>pengu</span></div>
+      <h1>Deployment Guide</h1>
+      <p class="subtitle">🐧 Read this before you upload — it'll save you pain.</p>
+    </header>
+
+    <!-- THE BIG RULE -->
+    <section class="card">
+      <h2>⚠️ Rule #1: Use relative links only</h2>
+
+      <p>Your site is served from a <strong>subfolder</strong> of our domain, not from the root. That means any link starting with <code>/</code> will break — it points to the root of the whole domain, not to your site.</p>
+
+      <div class="callout warn">
+        <span class="label">❌ Broken — don't do this</span>
+        <pre><code>&lt;a href="/about"&gt;About&lt;/a&gt;
+&lt;img src="/images/logo.png"&gt;
+&lt;link rel="stylesheet" href="/style.css"&gt;
+&lt;script src="/app.js"&gt;&lt;/script&gt;</code></pre>
+        <p>When a visitor clicks <code>/about</code>, the browser goes to <code>ourdomain.com/about</code> — completely outside your site — and gets a 404.</p>
+      </div>
+
+      <div class="callout good">
+        <span class="label">✅ Correct — do this instead</span>
+        <pre><code>&lt;a href="about/"&gt;About&lt;/a&gt;
+&lt;img src="images/logo.png"&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;script src="app.js"&gt;&lt;/script&gt;</code></pre>
+        <p><strong>Rule of thumb:</strong> never start a link with <code>/</code>. Use bare relative paths.</p>
+      </div>
+    </section>
+
+    <!-- STRUCTURE -->
+    <section class="card">
+      <h2>📁 Rule #2: One folder per page</h2>
+
+      <p>Every "page" should be a folder with an <code>index.html</code> inside it. That's how you get clean URLs like <code>/about/</code> instead of <code>/about.html</code>.</p>
+
+      <table>
+        <thead>
+          <tr><th>You want this URL</th><th>Put this file on disk</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/</code> (homepage)</td><td><code>index.html</code></td></tr>
+          <tr><td><code>/about/</code></td><td><code>about/index.html</code></td></tr>
+          <tr><td><code>/blog/</code></td><td><code>blog/index.html</code></td></tr>
+          <tr><td><code>/blog/post-1/</code></td><td><code>blog/post-1/index.html</code></td></tr>
+          <tr><td><code>/images/logo.png</code></td><td><code>images/logo.png</code></td></tr>
+          <tr><td><code>/style.css</code></td><td><code>style.css</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <span class="label">❌ Does NOT work</span>
+        <pre><code>index.html
+about.html      ← page sitting loose at top level
+contact.html</code></pre>
+        <p>If <code>about.html</code> is at the top level, there's no way to reach it by typing <code>/about</code>. Either rename it to <code>about/index.html</code>, or link to it as <code>about.html</code> directly.</p>
+      </div>
+    </section>
+
+    <!-- EXAMPLE ZIP -->
+    <section class="card">
+      <h2>🐧 A valid example ZIP</h2>
+
+      <p>Here's what a well-structured upload looks like:</p>
+
+      <div class="tree">my-website.zip
+├── index.html
+├── style.css
+├── app.js
+├── images/
+│   └── logo.png
+├── about/
+│   └── index.html
+└── contact/
+    └── index.html</div>
+
+      <p>And <code>index.html</code> looking like this:</p>
+
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;
+    &lt;a href="about/"&gt;About&lt;/a&gt;
+    &lt;a href="contact/"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;img src="images/logo.png" alt="Logo"&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <p>Notice every <code>href</code> and <code>src</code> is relative — no leading slashes.</p>
+    </section>
+
+    <!-- SPA -->
+    <section class="card">
+      <h2>🚫 Single-page apps (React, Vue, Svelte)</h2>
+
+      <p>If your site uses a client-side router, <strong>use hash routing</strong>. We don't do SPA fallback — we won't silently serve <code>index.html</code> for unknown routes.</p>
+
+      <div class="callout warn">
+        <span class="label">❌ Won't work</span>
+        <pre><code>&lt;BrowserRouter&gt;
+  &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+&lt;/BrowserRouter&gt;</code></pre>
+        <p>Navigating to <code>/about</code> asks our CDN for <code>/about</code>, which doesn't exist → 404.</p>
+      </div>
+
+      <div class="callout good">
+        <span class="label">✅ Will work</span>
+        <pre><code>&lt;HashRouter&gt;
+  &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+&lt;/HashRouter&gt;</code></pre>
+        <p>URLs become <code>#/about</code>, which never hit the server, so nothing breaks.</p>
+      </div>
+    </section>
+
+    <!-- LIMITS -->
+    <section class="card">
+      <h2>📦 Upload limits</h2>
+
+      <table>
+        <thead>
+          <tr><th>Limit</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ZIP file size</td><td>50 MB</td></tr>
+          <tr><td>Extracted size</td><td>200 MB</td></tr>
+          <tr><td>Files per site</td><td>2,000</td></tr>
+          <tr><td>Single file inside the ZIP</td><td>50 MB</td></tr>
+        </tbody>
+      </table>
+
+      <h3>❌ Don't zip these</h3>
+      <ul>
+        <li><code>node_modules/</code></li>
+        <li><code>.git/</code></li>
+        <li><code>.DS_Store</code>, <code>__MACOSX/</code> — we ignore these automatically</li>
+        <li><code>Thumbs.db</code></li>
+        <li>Cache folders, IDE configs</li>
+      </ul>
+
+      <h3>✅ Do zip these</h3>
+      <ul>
+        <li>Your <code>index.html</code></li>
+        <li>CSS, JS, images, fonts</li>
+        <li>Any other asset your page loads</li>
+      </ul>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="card">
+      <h2>📝 Pre-upload checklist</h2>
+
+      <ul class="checklist">
+        <li>Every internal link uses a <strong>relative path</strong> (no leading <code>/</code>)</li>
+        <li>Homepage is <code>index.html</code> at the ZIP root (or inside one wrapper folder)</li>
+        <li>Every sub-page is its own folder with an <code>index.html</code> inside</li>
+        <li>No <code>node_modules</code>, <code>.git</code>, or cache folders in the ZIP</li>
+        <li>ZIP is under 50 MB</li>
+        <li>All assets load when you open <code>index.html</code> locally in your browser</li>
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section class="card">
+      <h2>❓ FAQ</h2>
+
+      <div class="faq">
+        <details>
+          <summary>Why can't I use <code>/about</code> links?</summary>
+          <p>Because your site lives at a subpath of our domain, not at the domain root. <code>/about</code> would send visitors to a completely different site.</p>
+        </details>
+
+        <details>
+          <summary>My site works locally but breaks after upload. Why?</summary>
+          <p>Almost always the leading-slash problem. Open DevTools → Network tab, click a broken link, and look at the URL it tried to load. If it starts with the bare domain instead of your site's folder, that's the bug.</p>
+        </details>
+
+        <details>
+          <summary>Can I use absolute URLs to my own domain?</summary>
+          <p>No — you don't have your own domain, you have a subpath of ours. Use relative URLs for everything internal.</p>
+        </details>
+
+        <details>
+          <summary>Can I link to external sites?</summary>
+          <p>Yes, of course. <code>https://google.com</code> or <code>https://cdn.jsdelivr.net/...</code> work fine, as long as they're fully qualified with <code>https://</code>.</p>
+        </details>
+
+        <details>
+          <summary>Can I update my site after uploading?</summary>
+          <p>Re-upload a new ZIP and you'll get a new URL. Bookmark or share the new one — old uploads are not automatically redirected.</p>
+        </details>
+
+        <details>
+          <summary>How do I get clean URLs like <code>/about/</code> instead of <code>/about.html</code>?</summary>
+          <p>Put the page in its own folder with an <code>index.html</code>. See the structure rules above.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>That's it. Upload your ZIP, grab the URL, and share it with the world. 🐧</p>
+      <a href="/">← Back to upload</a>
+    </footer>
+
+  </div>
+</body>
+</html>
