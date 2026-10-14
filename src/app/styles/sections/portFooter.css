@@ -1,0 +1,58 @@
+.portFooter {
+  background-color: azure;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: black;
+}
+
+.portFooter-three {
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.portFooter p {
+  font-size: 1rem;
+}
+
+.portFooter-three p {
+  font-size: 1rem;
+}
+
+
+@media (min-width: 700px) {
+  .portFooter {
+    background-color: azure;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: black;
+  }
+  
+  .portFooter-three {
+    background-color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: white;
+  }
+  
+  .portFooter p {
+    font-size: 1.2rem;
+  }
+  
+  .portFooter-three p {
+    font-size: 1.2rem;
+  }
+}

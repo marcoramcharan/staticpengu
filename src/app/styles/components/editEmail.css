@@ -1,0 +1,60 @@
+.editEmail {
+    width: 100%;
+    height: 100%;
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .editEmail input {
+    height: 35px;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid black;
+    outline: none;
+  }
+
+  .editEmail textarea {
+    height: 150px;
+    width: 90%;
+    padding: 10px;
+    border: 1.5px solid black;
+    outline: none;
+    resize: none;
+  }
+  
+  @media (min-width: 700px) {
+    .editEmail {
+      width: 100%;
+      height: 100%;
+      background-color: azure;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    
+    .editEmail input {
+      height: 35px;
+      width: 300px;
+      padding: 10px;
+      border: 1px solid black;
+    }
+
+    .editEmail textarea {
+      height: 150px;
+      width: 300px;
+      padding: 10px;
+      border: 1.5px solid black;
+      outline: none;
+      resize: none;
+    }
+    
+    
+  }

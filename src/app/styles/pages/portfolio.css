@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Freeman&family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap");
+
+/* the portfolio navbar */
+.portfolio-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: aquamarine;
+  padding: 10px;
+  z-index: 498;
+  position: sticky;
+  top: 0;
+}
+
+.portfolio-navbar a {
+  all: unset;
+  cursor: pointer;
+}
+
+.portfolio-navbar-container-content {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.portfolio-navbar-container-content button {
+  all: unset;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+}
+
+#portfolio-navbar-container {
+  display: none;
+}
+
+#portfolio-navbar-container-mobile-button {
+  display: block;
+}
+
+@media (min-width: 700px) {
+  #portfolio-navbar-container {
+    display: block;
+  }
+  #portfolio-navbar-container-mobile-button {
+    display: none;
+  }
+}
+
+/* templates */
+.templateOne {
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+  color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+/* templates */
+.templateOneNoPad {
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+  color: white;
+  width: 100%;
+  padding: 0px;
+}
+
+.templateTwo {
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+  color: white;
+  padding: 20px;
+}
+
+.templateTwoNoPad {
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+  color: white;
+  padding: 0px;
+}
+
+
+.templateThree {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+  color: white;
+  padding: 20px;
+}
+
+.templateThreeNoPad {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 10px;
+  color: white;
+  padding: 0px;
+}
+
+.edit-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.nav2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.publish {
+  all: unset;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+}
+
+.preview {
+  all: unset;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+}
+
+@media (min-width: 700px) {
+  .nav2 {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}

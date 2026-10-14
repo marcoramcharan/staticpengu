@@ -1,0 +1,182 @@
+.fonts {
+  height: 100vh;
+  width: 100%;
+  background-color: azure;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+.fonts button{
+  all: unset;
+  background-color: black;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.fonts-top {
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+
+.fonts-top input {
+  padding: 10px;
+  width: 300px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.fonts-top div {
+  display: flex;
+  gap: 10px;
+}
+
+.fonts-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+  overflow: auto;
+}
+
+.fonts-container .box {
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.fonts-container .selectedbox{
+  border: 1px solid black;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  color: white;
+}
+
+.fonts-container .box:hover {
+  border: 1px solid transparent;
+  background-color: #cccccc;
+}
+
+.fonts-container .box p {
+  color: grey;
+}
+
+.fonts-container .box button {
+  all: unset;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poetsen-one-regular {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.freeman-regular {
+  font-family: "Freeman", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.mon {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.lobster {
+  font-family: "Lobster", cursive;
+  font-weight: 100;
+  font-style: normal;
+}
+
+
+
+
+
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.oswald {
+  font-family: 'Oswald', sans-serif;
+}
+
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.merriweather {
+  font-family: 'Merriweather', serif;
+}
+
+.playfair-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.lora {
+  font-family: 'Lora', serif;
+}
+
+.inconsolata {
+  font-family: 'Inconsolata', monospace;
+}
+
+.close-icon{
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+
+@media (min-width: 700px) {
+  .fonts button{
+    all: unset;
+    background-color: black;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+}

@@ -1,0 +1,82 @@
+.editBanner {
+  width: 100%;
+  height: 100%;
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.editBanner input {
+  height: 40px;
+  width: 200px;
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: azure;
+  border: none;
+  outline: none;
+  color: black;
+  border: 1px solid black;
+}
+
+.editBanner .photo {
+  width: 130px;
+  height: 90px;
+  background-color: black;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: none;
+}
+
+.editBanner .photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: none;
+}
+
+.editBanner .photo .photo-edit-button {
+  margin: 10px;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.photo-menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.photo-menu *{
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.editBanner .photo .photo-cancel-button {
+  margin: 10px;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+@media (min-width: 700px) {
+  .editBanner input {
+    height: 35px;
+    width: 400px;
+    padding: 10px;
+  }
+}
+
+.resume-menu {
+  display: flex;
+  gap: 10px;
+}
+
+.resume-menu * {
+  font-size: 30px;
+  cursor: pointer;
+}

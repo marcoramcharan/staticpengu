@@ -1,0 +1,188 @@
+.skills {
+  background-color: azure;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  min-height: 50vh;
+}
+
+.skills-three {
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  min-height: 50vh;
+}
+
+.skills .skills-container {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.skills .skills-container .skill {
+  padding: 20px 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid black;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skills .skills-container .skill:last-child {
+  border-bottom: none;
+}
+
+.skills-three .skills-container {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.skills-three .skills-container .skill {
+  padding: 20px 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid white;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skills-three .skills-container .skill:last-child {
+  border-bottom: none;
+}
+
+.obj-no {
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.skills .education {
+  padding: 20px 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid black;
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skills .education:last-child {
+  border-bottom: none;
+}
+
+.skills .education div {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills .edu-one {
+  font-size: 1rem;
+}
+
+.skills .edu-two {
+  font-size: 1rem;
+}
+
+.skills .edu-three {
+  font-size: 1rem;
+}
+
+/* styling for dark mode */
+
+.skills-three .education {
+  padding: 20px 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid white;
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skills-three .education:last-child {
+  border-bottom: none;
+}
+
+.skills-three .education div {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-three .edu-one {
+  font-size: 1rem;
+}
+
+.skills-three .edu-two {
+  font-size: 1rem;
+}
+
+.skills-three .edu-three {
+  font-size: 1rem;
+}
+
+.skills-heading {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .skills .skills-container .skill {
+    width: 400px;
+    font-size: 2rem;
+  }
+  .skills-three .skills-container .skill {
+    width: 400px;
+    font-size: 2rem;
+  }
+  .skills-heading {
+    font-size: 2rem;
+  }
+  .skills-three .education {
+    padding: 20px 10px;
+    font-size: 2rem;
+    border-bottom: 1px solid white;
+    min-width: none;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .skills .education {
+    padding: 20px 10px;
+    font-size: 2rem;
+    min-width: none;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .skills .edu-one {
+    font-size: 1.5rem;
+  }
+  
+  .skills .edu-two {
+    font-size: 1.5rem;
+  }
+  
+  .skills .edu-three {
+    font-size: 1.5rem;
+  }
+}

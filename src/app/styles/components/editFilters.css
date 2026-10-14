@@ -1,0 +1,8 @@
+.editFilters {
+  display: flex;
+  background-color: azure;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}

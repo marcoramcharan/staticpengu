@@ -1,0 +1,141 @@
+.editSkills {
+  width: 100%;
+  height: 100%;
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+.editSkills .editSkillsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: fit-content;
+  height: 300px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.editSkills .editSkillsAdd {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.editSkills .editSkillsAdd * {
+  height: 35px;
+  width: fit-content;
+  padding: 10px;
+}
+
+.editSkills .editSkillsAdd input {
+  border: 1px solid black;
+  background-color: azure;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+
+
+
+
+
+.editSkills .editSkillsContainer .box {
+  padding: 10px 10px;
+  border: 1px solid black;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  cursor: pointer;
+  word-wrap: break-word;
+  word-break: break-all; 
+  white-space: normal; 
+}
+
+.editSkills .editSkillsContainer .box div{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+
+
+@media (min-width: 700px) {
+  .editSkills .editSkillsContainer .box {
+    padding: 10px 10px;
+    border: 1px solid black;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    cursor: pointer;
+  }
+  .editSkills .editSkillsAdd * {
+    height: 35px;
+    width: 300px;
+    padding: 10px;
+  }
+}
+
+.editSkills .editWeAdd {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.editWeAddLeft {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.editSkills .editWeAdd input {
+  width: 100%;
+  height: 30px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid black;
+}
+
+.editSkills .editWeAdd button {
+  all: unset;
+  padding: 10px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+.editSkills button {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  width: fit-content;
+}
+
+
+.bb {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 5px;
+}

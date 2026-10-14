@@ -1,0 +1,40 @@
+.contactForm{
+    background-color: black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contactForm-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+.contactForm-container div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contactForm-container div input{
+    width: 100%;
+    height: 40px;
+}
+
+.contactForm-container div textarea{
+    width: 100%;
+    height: 100px;
+}
+
+
+.contactForm button{
+    height: 50px;
+    width: fit-content;
+    padding: 10px 20px;
+}

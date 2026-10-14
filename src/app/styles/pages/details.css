@@ -1,0 +1,80 @@
+.details {
+  height: 100vh;
+  width: 100%;
+  background-color: azure;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 499;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 0px;
+  gap: 10px;
+  overflow-y: auto;
+  font-family: "Roboto", sans-serif;
+
+}
+
+.details-top {
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  position: sticky;
+  top: 0;
+  background-color: azure;
+}
+
+.details-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.details-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.details-container .box {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background-color:  #CCCCCC;
+  align-items: center;
+  width: 100%;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+.details-container .box:hover {
+  padding-left: 20px;
+  transition: all 0.5s;
+}
+
+.details-container .box p {
+  color: grey;
+}
+
+.close {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.edit {
+  font-size: 0rem;
+  cursor: pointer;
+}
+
+.details-container .box:hover .edit {
+  font-size: 2rem;
+  transition: all 0.4s;
+}

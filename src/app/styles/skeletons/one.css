@@ -1,0 +1,93 @@
+.one {
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.one .nav{
+    background-color: black;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.one .nav .nav-logo{
+    background-color: white;
+    height: 5px;
+    width: 50px;
+}
+
+.one .nav .nav-links{
+    display: flex;
+    gap: 8px;
+}
+
+.one .nav .nav-link{
+    background-color: white;
+    height: 5px;
+    width: 20px;
+}
+
+.one .photo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.one .name {
+  height: 5px;
+  width: 150px;
+  background-color: black;
+}
+
+.one .surname {
+  height: 5px;
+  width: 150px;
+  background-color: black;
+}
+
+.one .occupation {
+  height: 5px;
+  width: 150px;
+  background-color: black;
+}
+
+.sec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.div{
+    height: 1px;
+    background-color: black;
+    width: 100%;
+}
+
+.skill-heading{
+    height: 5px;
+    width: 100px;
+    background-color: black;
+}
+
+.skill-box{
+    height: 5px;
+    width: 250px;
+    background-color: black;
+}

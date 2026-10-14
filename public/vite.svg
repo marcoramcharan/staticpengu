@@ -1,0 +1,12 @@
+<svg width="100" height="120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Book cover -->
+  <rect x="10" y="10" width="80" height="100" fill="#ffcc66" stroke="#333" stroke-width="2"/>
+  <!-- Pages -->
+  <rect x="10" y="10" width="80" height="100" fill="#fff" stroke="#333" stroke-width="2"/>
+  <!-- Binding -->
+  <rect x="10" y="10" width="10" height="100" fill="#996633" stroke="#333" stroke-width="2"/>
+  <!-- Spine -->
+  <rect x="20" y="10" width="10" height="100" fill="#996633" stroke="#333" stroke-width="2"/>
+  <!-- Text "BOOK" on cover -->
+  <text x="30" y="60" font-family="Arial, sans-serif" font-size="16" fill="#333">BOOK</text>
+</svg>

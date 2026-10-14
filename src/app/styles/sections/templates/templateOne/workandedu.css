@@ -1,0 +1,31 @@
+.wandedu {
+  background-color: yellow;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wandedu-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.wandedu-container .box-right {
+  height: 100px;
+  width: 100%;
+  background-color: blue;
+  border: 1px solid black;
+  flex-grow: 1;
+}
+
+.wandedu-container .box-left {
+  height: 100px;
+  width: 100%;
+  background-color: blue;
+  border: 1px solid black;
+  flex-grow: 1;
+}

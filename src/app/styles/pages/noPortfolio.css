@@ -1,0 +1,12 @@
+.noPortfolio{
+    background-color: azure;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.noPortfolio h1{
+    font-size: 3rem;
+}

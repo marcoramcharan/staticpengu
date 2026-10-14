@@ -1,0 +1,21 @@
+.scrolltotop{
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    z-index: 497;
+    cursor: pointer;
+}
+
+.scrolltotopdark{
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    color: blacK;
+    z-index: 497;
+    cursor: pointer;
+}

@@ -1,0 +1,56 @@
+.right-content {
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  border: 1px solid gray;
+}
+
+.right-content-top{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #d4ebf2;
+}
+
+.right-content-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.right-content-bottom-box{
+    display: flex;
+    flex-direction: column;
+    border-bottom:  1px solid gray;
+    padding: 30px;
+}
+
+.right-content-bottom-box div{
+    padding-left: 10px;
+}
+
+.right-content-bottom-box span{
+    padding-left: 10px;
+}
+
+.right-content-top-buttons{
+    display: flex;
+    gap: 5px;
+}
+
+.right-content-top-buttons button{
+    display: flex;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.right-content-bottom-box:last-child {
+    border-bottom: none;
+    padding-bottom: 0; /* Optional: adjust padding if needed */
+}
+

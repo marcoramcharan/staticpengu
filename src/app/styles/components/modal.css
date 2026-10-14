@@ -1,0 +1,57 @@
+.modal {
+  height: 100vh;
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .content .top {
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+
+.modal .content .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.modal .content {
+  background-color: green;
+  width: 80%;
+  padding: 10px;
+  position: relative;
+}
+
+.modal .content .bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  padding-top: 10px;
+}
+
+.modal .content .bottom button {
+  padding: 10px 20px;
+}
+
+.close-element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+@media (min-width: 600px) {
+  .modal .content {
+    background-color: green;
+    width: 430px;
+    padding: 10px;
+    position: relative;
+  }
+}

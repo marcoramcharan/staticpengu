@@ -1,0 +1,23 @@
+.skills{
+    background-color:black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.skills-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+.skills-container .box{
+    height: 50px;
+    width: 100%;
+    background-color: blue;
+
+}

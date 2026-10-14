@@ -1,0 +1,35 @@
+.contact-edit {
+    background-color: azure;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: black;
+  }
+  
+  
+  .contact-edit .contact-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    height: 50vh;
+    overflow: auto;
+  }
+  
+  .contact-edit .contact-container .contact-box {
+    padding: 20px 10px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    gap: 10px;
+  }
+
+  .contact-edit .contact-container .contact-box input{
+    all: unset;
+    text-align: right;
+    flex-grow: 1;
+  }

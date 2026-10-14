@@ -1,0 +1,40 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+}
+
+.form-container input {
+  height: 35px;
+  width: 300px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.form-container textarea {
+  height: 100px;
+  width: 300px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.form-container button {
+  height: 30px;
+  width: 300px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 20px;
+}
+
+.error {
+  background-color: red;
+  color: white;
+  width: 300px;
+  padding: 10px;
+  text-align: center;
+}

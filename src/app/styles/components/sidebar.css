@@ -1,0 +1,45 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: azure;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebar-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-content-heading {
+  text-align: center;
+}
+
+.sidebar-content-button {
+  all: unset;
+  background-color: transparent;
+  border: 1px solid #e1e1e1;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.sidebar-content-button:hover {
+  border: 1px solid black;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+}

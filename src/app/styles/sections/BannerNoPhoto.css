@@ -1,0 +1,47 @@
+/* no photo */
+.banner-no-photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  background-color: darkseagreen;
+  padding: 10px;
+  height: 100vh;
+  width: 100%;
+}
+
+.banner-no-photo-container h1 {
+  font-size: 100px;
+}
+
+.banner-no-photo-container h3 {
+  font-size: 30px;
+}
+
+
+.banner-no-photo-container-light {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  background-color: azure;
+  padding: 10px;
+  height: 100vh;
+  width: 100%;
+}
+
+
+.banner-no-photo-container-dark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  background-color: darkseagreen;
+  padding: 10px;
+  height: 100vh;
+  width: 100%;
+  color: black;
+}

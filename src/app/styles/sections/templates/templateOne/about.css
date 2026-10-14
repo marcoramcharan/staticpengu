@@ -1,0 +1,8 @@
+.about {
+  background-color: azure;
+  color: black;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+}

@@ -1,0 +1,96 @@
+.employerPublicPortfolio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.employerPublicPortfolio .profile-photo {
+  background-color: silver;
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.employerPublicPortfolio .profile-photo img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.employerPublicPortfolio .ab {
+  width: 50%;
+}
+
+.reviews {
+  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  gap: 20px;
+}
+
+.reviews h1{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviews-top{
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviews-container .box {
+  background-color: azure;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reviews-container .box div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.employerPublicPortfolioContent {
+  width: 100%;
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.add-review-button{
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-review-button:hover{
+  background-color: grey;
+}
+
+.reviews p{
+  font-size: 15px;
+}
+
+.reviews span{
+  font-size: 13px;
+}

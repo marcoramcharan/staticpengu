@@ -1,0 +1,77 @@
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.section-settings {
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aquamarine;
+  width: 100%;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: black;
+}
+
+.section-settings button {
+  all: unset;
+  font-size: 13px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+}
+
+.section:hover .section-settings {
+  visibility: visible;
+}
+
+.section .section-settings div {
+  display: flex;
+  gap: 10px;
+}
+
+.section:hover .section-main-border {
+  border: 1px solid aquamarine;
+}
+
+.section-main-border {
+  width: 100%;
+  border: 1px solid transparent;
+}
+
+.section-main {
+  width: 100%;
+}
+
+.section-settings {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.section-settings button {
+  padding: 10px 20px;
+}
+
+.section-settings select {
+  padding: 10px 20px;
+}
+.section-settings select option {
+  padding: 10px 20px;
+  height: 50px;
+}

@@ -1,0 +1,366 @@
+import { useEffect, useState } from "react";
+import "../styles/pages/details.css";
+import EditName from "./EditName";
+import EditSurname from "./EditSurname";
+import EditOccupation from "./EditOccupation";
+import EditEmail from "./EditEmail";
+import EditCell from "./EditCell";
+import EditAbout from "./EditAbout";
+import EditSkills from "./EditSkills";
+import EditHobbies from "./EditHobbies";
+import EditSoftSkills from "./EditSoftSkills";
+import EditWe from "./EditWe";
+import EditEdu from "./EditEdu";
+import { IoIosClose } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
+import EditFooter from "./EditFooter";
+import EditPhoto from "./EditPhoto";
+import EditContact from "./EditContact";
+import { portfolio } from "../helpers/helpers";
+
+interface TemplateProps {
+  onCancel: () => void;
+  setPortfolio: any;
+  data: portfolio;
+}
+
+const Details: React.FC<TemplateProps> = ({ onCancel, setPortfolio, data }) => {
+  const [showName, setShowName] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
+  const [showCell, setShowCell] = useState(false);
+  const [showWe, setShowWe] = useState(false);
+  const [showEdu, setShowEdu] = useState(false);
+  const [showPhoto, setShowPhoto] = useState(false);
+  const [showFooter, setShowFooter] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showSkills, setShowSkills] = useState(false);
+  const [showSoftSkills, setShowSoftSkills] = useState(false);
+  const [showHobbies, setShowHobbies] = useState(false);
+  const [showSurname, setShowSurname] = useState(false);
+  const [showOccupation, setShowOccupation] = useState(false);
+  const [showContact, setShowContact] = useState(false);
+
+  useEffect(() => {
+    // Set the body height and overflow when the component mounts
+    document.body.style.height = "100vh";
+    document.body.style.overflow = "hidden";
+
+    // Cleanup function to reset the body overflow when the component unmounts
+    return () => {
+      document.body.style.height = "";
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  const updateAbout = (font: string) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      about: font,
+    }));
+  };
+
+  const updateSkills = (font: string[]) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      skills: font,
+    }));
+  };
+
+  const updateHobbies = (font: string[]) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      hobbies: font,
+    }));
+  };
+
+  const updateSoftSkills = (font: string[]) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      softSkills: font,
+    }));
+  };
+
+  const updateFooter = (font: string) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      footer: font,
+    }));
+  };
+
+  const updateWe = (font: any[]) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      we: font,
+    }));
+  };
+
+  const updateEdu = (font: any[]) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      edu: font,
+    }));
+  };
+
+  const updateName = (font: string) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      name: font,
+    }));
+  };
+
+  const updateSurname = (font: string) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      surname: font,
+    }));
+  };
+
+  const updateOccupation = (font: string) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      occupation: font,
+    }));
+  };
+
+  const updateEmail = (font: string) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      surname: font,
+    }));
+  };
+
+  const updateContact = (font: any[]) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      links: font,
+    }));
+  };
+
+  const updatePhoto = (font: any) => {
+    setPortfolio((prevPortfolio: any) => ({
+      ...prevPortfolio,
+      photo: font,
+    }));
+  };
+
+  const getFirstSixCharacters = (str: string) => {
+    return str.substring(0, 6);
+  };
+
+  return (
+    <div className="details">
+      {showName ? (
+        <EditName
+          value={data.name}
+          updateSkills={updateName}
+          onCancel={() => setShowName(false)}
+        />
+      ) : null}
+
+      {showEmail ? (
+        <EditEmail
+          value={data.email}
+          updateSkills={updateEmail}
+          onCancel={() => setShowEmail(false)}
+        />
+      ) : null}
+
+      {showSurname ? (
+        <EditSurname
+          value={data.surname}
+          updateSkills={updateSurname}
+          onCancel={() => setShowSurname(false)}
+        />
+      ) : null}
+
+      {showPhoto ? (
+        <EditPhoto
+          data={data}
+          updatePhoto={updatePhoto}
+          onCancel={() => setShowPhoto(false)}
+        />
+      ) : null}
+      {showAbout ? (
+        <EditAbout
+          value={data.about}
+          updateSkills={updateAbout}
+          sectionName="about"
+          onCancel={() => setShowAbout(false)}
+        />
+      ) : null}
+      {showSkills ? (
+        <EditSkills
+          value={data.skills}
+          updateSkills={updateSkills}
+          sectionName="about"
+          onCancel={() => setShowSkills(false)}
+        />
+      ) : null}
+      {showSoftSkills ? (
+        <EditSoftSkills
+          value={data.softSkills}
+          updateSoftSkills={updateSoftSkills}
+          sectionName="about"
+          onCancel={() => setShowSoftSkills(false)}
+        />
+      ) : null}
+      {showHobbies ? (
+        <EditHobbies
+          value={data.hobbies}
+          updateSkills={updateHobbies}
+          sectionName="about"
+          onCancel={() => setShowHobbies(false)}
+        />
+      ) : null}
+      {showFooter ? (
+        <EditFooter
+          value={data.footer}
+          updateSkills={updateFooter}
+          onCancel={() => setShowFooter(false)}
+        />
+      ) : null}
+      {showCell ? <EditCell onCancel={() => setShowCell(false)} /> : null}
+      {showWe ? (
+        <EditWe
+          value={data.we}
+          updateSkills={updateWe}
+          onCancel={() => setShowWe(false)}
+        />
+      ) : null}
+      {showEdu ? (
+        <EditEdu
+          value={data.edu}
+          updateSkills={updateEdu}
+          onCancel={() => setShowEdu(false)}
+        />
+      ) : null}
+
+      {showOccupation ? (
+        <EditOccupation
+          value={data.occupation}
+          updateSkills={updateOccupation}
+          onCancel={() => setShowOccupation(false)}
+        />
+      ) : null}
+
+      {showContact ? (
+        <EditContact
+          value={data.links}
+          updateSkills={updateContact}
+          onCancel={() => setShowContact(false)}
+        />
+      ) : null}
+
+      <div className="details-top">
+        <h1>details</h1>
+        <IoIosClose className="close" onClick={() => onCancel()} />
+      </div>
+      <div className="details-container">
+        <div className="details-component">
+          <h1>personal details</h1>
+          <div className="box">
+            <div>
+              <h3>name</h3>
+              <p>{data.name}</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowName(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>surname</h3>
+              <p>{data.surname}</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowSurname(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>photo</h3>
+              <p>{getFirstSixCharacters(data.photo)}</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowPhoto(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>occupation</h3>
+              <p>{data.occupation}</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowOccupation(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>about</h3>
+              <p>dajfsdfk@gmail.comjhkddkjb kjfbsdkj dbbd...</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowAbout(true)} />
+          </div>
+        </div>
+
+        <div className="details-component">
+          <h1>other</h1>
+          <div className="box">
+            <div>
+              <h3>skills</h3>
+              <p>{data.skills?.length} </p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowSkills(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>hobbies</h3>
+              {data.hobbies?.length}{" "}
+            </div>
+            <MdEdit className="edit" onClick={() => setShowHobbies(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>soft skills</h3>
+              {data.softSkills?.length}{" "}
+            </div>
+            <MdEdit className="edit" onClick={() => setShowSoftSkills(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>education</h3>
+              {data.edu?.length}{" "}
+            </div>
+            <MdEdit className="edit" onClick={() => setShowEdu(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>we</h3>
+              {data.we?.length}{" "}
+            </div>
+            <MdEdit className="edit" onClick={() => setShowWe(true)} />
+          </div>
+        </div>
+
+        <div className="details-component">
+          <h1>portfolio</h1>
+          <div className="box">
+            <div>
+              <h3>navbar text</h3>
+              <p>{data.navbar}</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowFooter(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>footer text</h3>
+              <p>{data.footer}</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowFooter(true)} />
+          </div>
+          <div className="box">
+            <div>
+              <h3>contact</h3>
+              <p>dajfsdfk@gmail.comjhkddkjb kjfbsdkj dbbd...</p>
+            </div>
+            <MdEdit className="edit" onClick={() => setShowContact(true)} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Details;

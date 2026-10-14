@@ -1,0 +1,27 @@
+.console {
+  background-color: azure;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.console-box {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  border: 1px solid  #E1E1E1;
+}
+
+.console-box p {
+  font-size: 2rem;
+}
+
+@media (min-width: 700px) {
+}

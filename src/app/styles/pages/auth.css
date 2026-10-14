@@ -1,0 +1,149 @@
+.auth {
+  height: 90vh;
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth .auth-heading {
+  text-align: center;
+}
+
+.auth .auth-para {
+  width: 70%;
+  text-align: center;
+  word-wrap: break-word;
+  color: grey;
+}
+
+.auth .auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.auth .auth-form input {
+  height: 30px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid black;
+  outline: none;
+}
+
+.auth .auth-form button {
+  all: unset;
+  height: 30px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.auth .auth-form .error-box {
+  background-color: red;
+  color: white;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.auth .auth-form .error-box-hidden {
+  background-color: transparent;
+  color: white;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+/* for big screens */
+@media (min-width: 700px) {
+  .auth {
+    height: 90vh;
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .auth .auth-heading {
+    text-align: center;
+  }
+
+  .auth .auth-para {
+    width: 70%;
+    text-align: center;
+    word-wrap: break-word;
+  }
+
+  .auth .auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+  }
+
+  .auth .auth-form input {
+    height: 30px;
+    width: 300px;
+    padding: 5px;
+    border: 1px solid black;
+  }
+
+  .auth .auth-form button {
+    all: unset;
+    height: 30px;
+    width: 300px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .auth .auth-form .error-box {
+    background-color: red;
+    color: white;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    word-wrap: break-word;
+  }
+
+  .auth .auth-form .error-box-hidden {
+    background-color: transparent;
+    color: white;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    word-wrap: break-word;
+  }
+}
+
+.auth a{
+  background-color: dodgerblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+}

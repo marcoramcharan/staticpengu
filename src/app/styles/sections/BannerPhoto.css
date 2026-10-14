@@ -1,0 +1,18 @@
+.banner-photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  background-color: aqua;
+  padding: 10px;
+  height: 100vh;
+  width: 100%;
+}
+
+.photo {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
+}

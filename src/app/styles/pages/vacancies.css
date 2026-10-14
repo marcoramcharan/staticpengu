@@ -1,0 +1,126 @@
+.vacancies {
+  background-color: azure;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.vacancy-box {
+  background-color: aquamarine;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+
+.vacancy-box-public {
+  background-color: aquamarine;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  padding: 20px;
+}
+
+.vacancy-box-public p {
+  width: 50%;
+}
+
+.vacancy-box .remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.port-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.vacancies .tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.vacancies .tabs button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.jobpage-top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.jobpage-top a{
+  text-decoration: none;
+  color: black;
+}
+
+.jobpage-top div {
+  display: flex;
+  gap: 10px;
+}
+
+.jobpage-top button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.portbox-photo {
+  height: 50px;
+  width: 90px;
+  background-color: black;
+  border-radius: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portbox-photo img{
+  width: 100%;
+  height: 100%;
+}
+
+.reject {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.hover-icon {
+  display: none;
+}
+
+.hover-icon-parent:hover .hover-icon {
+  display: block;
+}

@@ -1,0 +1,57 @@
+.portNavbar {
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.portNavbarLinks{
+  display: flex;
+  gap: 10px;
+}
+
+.portNavbarLinks a{
+  all: unset;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.portNavbarLinks button{
+  all: unset;
+  cursor: pointer;
+}
+
+.portNavbar-three {
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.portNavbar h1{
+  font-size: 1rem;
+}
+
+
+.portNavbar-three h1{
+  font-size: 1rem;
+}
+
+/* todo: make this responsive but not quite */
+@media (min-width: 700px) {
+  .portNavbar h1{
+    font-size: 1rem;
+  }
+  
+  
+  .portNavbar-three h1{
+    font-size: 1rem;
+  }
+}

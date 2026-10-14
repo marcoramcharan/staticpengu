@@ -1,0 +1,40 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 50px 0px;
+}
+
+.center-container .box {
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+
+.footer-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+.contact-child{
+  border: 1px solid black;
+  padding: 10px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Autocomplete</title>
+</head>
+<body>
+    <input type="text" id="search" placeholder="Search location...">
+    <ul id="suggestions"></ul>
+    <pre id="hierarchy"></pre>
+
+    <script>
+        const searchInput = document.getElementById('search');
+        const suggestions = document.getElementById('suggestions');
+        const hierarchy = document.getElementById('hierarchy');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value;
+
+            if (query.length < 3) return;
+
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    suggestions.innerHTML = '';
+                    data.forEach(place => {
+                        const li = document.createElement('li');
+                        li.textContent = place.display_name;
+                        li.addEventListener('click', () => fetchHierarchy(place));
+                        suggestions.appendChild(li);
+                    });
+                });
+        });
+
+        function fetchHierarchy(place) {
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${place.lat}&lon=${place.lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    hierarchy.textContent = JSON.stringify(data.address, null, 2);
+                });
+        }
+    </script>
+</body>
+</html>

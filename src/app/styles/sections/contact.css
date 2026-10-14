@@ -1,0 +1,95 @@
+.contact {
+  background-color: azure;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  min-height: 50vh;
+}
+
+.contact-three {
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  min-height: 50vh;
+}
+
+.contact .contact-container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.contact .contact-container .contact-box {
+  padding: 20px 10px;
+  /*     font-size: 2rem;
+ */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid black;
+  min-width: 300px;
+}
+
+.contact .contact-container .contact-box-icons {
+  padding: 20px 10px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contact-three .contact-container {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.contact-three .contact-container .contact-box {
+  padding: 20px 10px;
+  /*     font-size: 2rem;
+ */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid white;
+  min-width: 300px;
+}
+
+.contact-three .contact-container .contact-box-icons {
+  padding: 20px 10px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+@media (min-width: 700px) {
+  .contact-three .contact-container .contact-box {
+    font-size: 2rem;
+  }
+
+  .contact .contact-container .contact-box {
+    font-size: 2rem;
+  }
+}
+
+.contact-box-empty {
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid white;
+  min-width: 300px;
+}

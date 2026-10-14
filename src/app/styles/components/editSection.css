@@ -1,0 +1,66 @@
+.es {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(225, 225, 225, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.es .content-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.es .content-container .content-top {
+  background-color: black;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.es .content-container .content-middle {
+  flex-grow: 1;
+  background-color: ivory;
+}
+
+.es .content-container .content-bottom {
+  background-color: azure;
+  border-top: 1px solid black;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.es .content-container .content-bottom button {
+  all: unset;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+@media (min-width: 700px) {
+  .es .content-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+  }
+}

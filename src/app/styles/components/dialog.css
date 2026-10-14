@@ -1,0 +1,92 @@
+.dialog {
+  height: 100vh;
+  background-color: rgba(225, 225, 225, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+}
+
+.dialog .content .top {
+  padding: 10px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.dialog .content .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: azure;
+}
+
+.dialog .content {
+  width: 80%;
+  padding: 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog .content .bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: azure;
+  border-top: 1px solid black;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.dialog .content .bottom button {
+  all: unset;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.close-element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+/* confirm delete account dialog */
+.confirm-delete-account {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.confirm-delete-account input {
+  height: 40px;
+  width: 80%;
+  padding: 5px;
+  border: 1px solid black;
+  outline: none;
+}
+
+@media (min-width: 600px) {
+  .dialog .content {
+    width: 430px;
+    padding: 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+}

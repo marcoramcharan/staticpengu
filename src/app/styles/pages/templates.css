@@ -1,0 +1,221 @@
+.templates {
+  height: 100vh;
+  width: 100%;
+  background-color: azure;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.templates-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  padding: 10px;
+}
+
+.templates-top div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.templates-bottom {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+}
+
+.templates-list {
+  width: 300px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+  height: 90vh;
+  padding-top: 0px;
+  font-size: 0.8rem;
+}
+
+.templates .template {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.template-info {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #cccccc;
+}
+
+.template-info div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.templates-list .box {
+  border: 1px solid #cccccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.templates-list .box:hover {
+  background-color: #cccccc;
+}
+
+.templates-list .box:hover p {
+  color: white;
+}
+
+.templates-list .box p {
+  color: grey;
+}
+
+.templates-list .box-set {
+  border: 1px solid black;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  cursor: pointer;
+  color: white;
+}
+
+.templates-list .box-selected {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.button-radio {
+  all: unset;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button-radio-child {
+  width: 60%;
+  height: 60%;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.template-content {
+  height: 200vh;
+  width: 100%;
+}
+
+.templates-top button {
+  all: unset;
+  background-color: black;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.template button {
+  all: unset;
+  background-color: black;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 700px) {
+  /*   .templates button {
+    all: unset;
+    background-color: black;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+ */
+}
+
+.apply-now-bottom {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.anb {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  padding: 20px;
+  border: 1px solid  #E1E1E1;
+
+}
+
+.apply-now-bottom h1 {
+  font-size: 20px;
+}
+
+.apply-now-bottom span {
+  font-size: 15px;
+}
+
+.anb-red {
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid  #E1E1E1;
+}
+
+.anb-blue {
+  background-color: dodgerblue;
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+}

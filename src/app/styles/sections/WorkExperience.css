@@ -1,0 +1,49 @@
+/* hobbies */
+.we-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  position: relative;
+  width: 70%;
+  padding: 10px;
+}
+
+
+.we-container .box {
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  min-width: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.we-container .box .top{
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 10px;
+}
+
+.we-container .box .bottom{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.we-container .box .bottom-left{
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.we-container .box .bottom-right{
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}

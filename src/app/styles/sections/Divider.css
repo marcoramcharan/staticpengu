@@ -1,0 +1,29 @@
+.divider{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider .dividerchild{
+    height: 0.5px;
+    width: 98%;
+    background-color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.divider-white{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider-white .dividerchild{
+    height: 0.5px;
+    width: 98%;
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
