@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api, API_URL } from "../lib/api";
-import { useStore } from "../store/store";
+import { useStore2 } from "../store/store2";
 
 type SiteStatus = "active" | "disabled";
 
@@ -106,7 +106,7 @@ const css = `
 
 const Dashboard = () => {
   const { userId } = useParams<{ userId: string }>();
-  const user = useStore((s) => s.user);
+  const user = useStore2((s) => s.user);
 
   const [sites, setSites] = useState<Site[]>([]);
   const [loading, setLoading] = useState(true);
@@ -212,7 +212,7 @@ const Dashboard = () => {
       }
 
       if (xhr.status === 401) {
-        useStore.getState().logout();
+        useStore2.getState().logout();
         return;
       }
 

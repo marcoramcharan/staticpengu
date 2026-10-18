@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useStore } from "../store/store";
+import { useStore2 } from "../store/store2";
 
 const API_URL = "http://localhost:3000";
 const LOGIN_ENDPOINT = `${API_URL}/api/auth/login`;
@@ -32,7 +32,7 @@ const css = `
 
 const Login = () => {
   const navigate = useNavigate();
-  const login = useStore((s) => s.login);
+  const login = useStore2((s) => s.login);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);

@@ -1,11 +1,11 @@
 import React from "react";
 import { Navigate, useLocation, useParams } from "react-router-dom";
-import { useStore } from "../store/store";
+import { useStore2 } from "../store/store2";
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const user = useStore((s) => s.user);
+  const user = useStore2((s) => s.user);
   const location = useLocation();
   const { userId } = useParams<{ userId?: string }>();
 

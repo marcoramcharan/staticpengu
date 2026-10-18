@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useStore } from "../store/store";
+import { useStore2 } from "../store/store2";
 
 const API_URL = "http://localhost:3000";
 const SIGNUP_ENDPOINT = `${API_URL}/api/auth/signup`;
@@ -35,7 +35,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Signup = () => {
   const navigate = useNavigate();
-  const login = useStore((s) => s.login);
+  const login = useStore2((s) => s.login);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");

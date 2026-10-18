@@ -1,38 +1,57 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-export type User = {
-  id: string | number;
-  email?: string;
-  [key: string]: any;
-};
+type user = any;
+type employee = any;
+type employer = any;
 
-interface AuthState {
-  user: User | null;
-  token: string | null;
-  login: (user: User, token?: string | null) => void;
-  logout: () => void;
+interface TodoState {
+  user: user;
+  employee: employee;
+  employer: employer;
+  loginuser: (user: any) => void;
+  loginemployer: (user: any) => void;
+  loginemployee: (user: any) => void;
+  logoutuser: () => void;
 }
 
-export const useStore = create<AuthState>()(
+export const useStore = create<TodoState>()(
   devtools(
     persist(
       (set) => ({
-        user: null,
-        token: null,
+        user: false,
+        employee: false,
+        employer: false,
 
-        login: (user, token = null) => {
-          set(() => ({ user, token }), false, "login");
+        loginuser: (user) => {
+          set(() => ({
+            user: user,
+          }));
         },
 
-        logout: () => {
-          set(() => ({ user: null, token: null }), false, "logout");
+        loginemployer: (user) => {
+          set(() => ({
+            employer: user,
+          }));
+        },
+
+        loginemployee: (user) => {
+          set(() => ({
+            employee: user,
+          }));
+        },
+
+        logoutuser: () => {
+          set(() => ({
+            user: null,
+            employee: null,
+            employer: null,
+          }));
         },
       }),
       {
-        name: "staticpengu",
+        name: "indeed",
       }
-    ),
-    { name: "staticpengu-store" }
+    )
   )
 );

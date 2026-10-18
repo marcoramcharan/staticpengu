@@ -1,4 +1,4 @@
-import { useStore } from "../store/store";
+import { useStore2 } from "../store/store2";
 
 export const API_URL = "http://localhost:3000";
 
@@ -36,7 +36,7 @@ export async function api<T = any>(
     }
 
     if (res.status === 401) {
-      useStore.getState().logout();
+      useStore2.getState().logout();
     }
 
     return { ok: res.ok, status: res.status, data };
