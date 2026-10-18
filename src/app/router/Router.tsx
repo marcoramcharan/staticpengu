@@ -1,4 +1,4 @@
-import { RouteObject, Route } from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "../pages/Home";
@@ -13,7 +13,7 @@ const routes: RouteObject[] = [
     path: "/",
     element: (
       <MainLayout>
-        <Route index element={<Home />} />
+        <Home />
       </MainLayout>
     ),
   },
