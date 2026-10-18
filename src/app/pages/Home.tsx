@@ -1,278 +1,124 @@
-import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useStore } from "../store/store";
 import "../styles/pages/home.css";
 
-const MAX_FILE_SIZE = 50 * 1024 * 1024;
+const steps = [
+  {
+    icon: "📦",
+    title: "Zip your site",
+    text: "Bundle your HTML, CSS and JavaScript into a single ZIP file (up to 50 MB).",
+  },
+  {
+    icon: "🏷️",
+    title: "Name it",
+    text: "Pick a site name and get a clean, shareable URL on staticpengu.b-cdn.net.",
+  },
+  {
+    icon: "🚀",
+    title: "Go live",
+    text: "We unpack it, deploy it and serve it from the BunnyCDN edge. That's it.",
+  },
+];
 
-const slugify = (input: string): string =>
-  String(input || "")
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .replace(/-{2,}/g, "-")
-    .slice(0, 40);
+const features = [
+  {
+    icon: "⚡",
+    title: "Fast delivery",
+    text: "Assets are served through BunnyCDN, so your site loads quickly wherever your visitors are.",
+  },
+  {
+    icon: "🔗",
+    title: "Your own URL",
+    text: "Every site gets its own path, built from the name you choose. No config needed.",
+  },
+  {
+    icon: "🗂️",
+    title: "Simple dashboard",
+    text: "See all your sites in one place, with page count, size and how many days are left.",
+  },
+  {
+    icon: "🔐",
+    title: "Personal accounts",
+    text: "Sign up, log in and keep every site you deploy tied to your own account.",
+  },
+  {
+    icon: "🧹",
+    title: "Auto cleanup",
+    text: "Demo sites are removed after 3 days, so nothing sits around forever.",
+  },
+  {
+    icon: "📖",
+    title: "Step-by-step guide",
+    text: "New to zipping a site for hosting? The deployment guide walks you through it.",
+  },
+];
 
-const isValidSlug = (slug: string): boolean => slug.length >= 3;
-
-const formatBytes = (bytes: number): string => {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
-};
-
-type StatusType = "error" | "success";
-
-type Status = {
-  type: StatusType;
-  message: string;
-  url?: string;
-  siteLabel?: string;
-};
+const stack = [
+  "React",
+  "TypeScript",
+  "ExpressJS",
+  "MongoDB",
+  "BunnyCDN",
+  "Docker",
+];
 
 const Home = () => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const user = useStore((s) => s.user);
+  const loggedIn = Boolean(user);
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [siteName, setSiteName] = useState("");
-  const [showNameModal, setShowNameModal] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [dragging, setDragging] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [progressText, setProgressText] = useState("Ready to upload");
-  const [status, setStatus] = useState<Status | null>(null);
-
-  const slug = slugify(siteName);
-
-  const showError = (message: string) =>
-    setStatus({ type: "error", message });
-
-  const resetFileInput = () => {
-    if (fileInputRef.current) fileInputRef.current.value = "";
-  };
-
-  const selectFile = (file: File | undefined | null) => {
-    if (!file || uploading) return;
-    setStatus(null);
-
-    if (!file.name.toLowerCase().endsWith(".zip")) {
-      setSelectedFile(null);
-      resetFileInput();
-      showError("Please select a ZIP archive.");
-      return;
-    }
-
-    if (file.size === 0 || file.size > MAX_FILE_SIZE) {
-      setSelectedFile(null);
-      resetFileInput();
-      showError(
-        file.size === 0
-          ? "The selected file is empty."
-          : "The ZIP file exceeds the 50 MB upload limit."
-      );
-      return;
-    }
-
-    setSelectedFile(file);
-    setProgress(0);
-    setProgressText("Ready to upload");
-    setShowNameModal(true);
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
-    e.preventDefault();
-    setDragging(false);
-    selectFile(e.dataTransfer.files?.[0]);
-  };
-
-  const cancelModal = () => {
-    if (uploading) return;
-    setShowNameModal(false);
-    setSelectedFile(null);
-    resetFileInput();
-    setSiteName("");
-    setStatus(null);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!selectedFile || uploading) return;
-
-    if (!isValidSlug(slug)) {
-      showError(
-        "Site name must be at least 3 characters (letters and numbers only)."
-      );
-      return;
-    }
-
-    setUploading(true);
-    setStatus(null);
-
-    const data = new FormData();
-    data.append("name", slug);
-    data.append("file", selectedFile);
-
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://mc-lxcrvq0y7t.b-cdn.net/api/sites");
-
-    xhr.upload.addEventListener("progress", (event) => {
-      if (!event.lengthComputable) return;
-      const percent = Math.round((event.loaded / event.total) * 100);
-      setProgress(percent);
-      setProgressText(`Uploading: ${percent}%`);
-    });
-
-    xhr.addEventListener("load", () => {
-      setUploading(false);
-
-      let result: any;
-      try {
-        result = JSON.parse(xhr.responseText);
-      } catch {
-        setProgressText("Upload failed");
-        showError("The server returned an invalid response.");
-        return;
-      }
-
-      if (xhr.status < 200 || xhr.status >= 300) {
-        setProgressText("Upload failed");
-        showError(result.error || result.message || "Upload failed.");
-        return;
-      }
-
-      if (!result.id || !result.url) {
-        showError("The server response is missing the website ID or URL.");
-        return;
-      }
-
-      setProgress(100);
-      setProgressText("Website deployed");
-      setShowNameModal(false);
-      setStatus({
-        type: "success",
-        message: "Website uploaded successfully!",
-        url: result.url,
-        siteLabel: result.name
-          ? `Site: ${result.name}`
-          : `Website ID: ${result.id}`,
-      });
-    });
-
-    xhr.addEventListener("error", () => {
-      setUploading(false);
-      setProgressText("Upload failed");
-      showError(
-        "Could not connect to the server. Check that the backend is running."
-      );
-    });
-
-    xhr.send(data);
-  };
-
-  const resetAll = () => {
-    setSelectedFile(null);
-    setSiteName("");
-    setStatus(null);
-    setProgress(0);
-    setProgressText("Ready to upload");
-    resetFileInput();
-  };
+  const primaryTo = loggedIn ? `/dashboard/${user?.id}` : "/signup";
+  const primaryLabel = loggedIn ? "Go to dashboard" : "Get started free";
 
   return (
     <div className="home-page">
-      <div className="home-wrap">
-        {/* ---------- LEFT: UPLOAD ---------- */}
-        <section className="home-form-side">
+      {/* ---------- HERO ---------- */}
+      <section className="lp-hero">
+        <div className="lp-hero-main">
           <div className="brand">
             static<span>pengu</span>
           </div>
 
-          <h1>Deploy your website.</h1>
-          <p className="subtitle">🐧 Upload a ZIP — we'll handle the rest.</p>
+          <h1>Zip it. Upload it. It's live.</h1>
+          <p className="subtitle">
+            🐧 Static website hosting for HTML, CSS and JavaScript.
+          </p>
+          <p className="lp-lead">
+            Drop in a ZIP file, pick a name and get a live URL in seconds. No
+            servers to set up, no config files, no fuss.
+          </p>
 
-          {/* ---------- SUCCESS STATE ---------- */}
-          {status?.type === "success" && status.url ? (
-            <div className="home-success">
-              <div className="home-success-icon">🎉</div>
-              <h2>Your site is live!</h2>
-              <a
-                className="home-success-url"
-                href={status.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {status.url}
-              </a>
-              {status.siteLabel && (
-                <p className="home-success-meta">{status.siteLabel}</p>
-              )}
-              <p className="home-success-note">
-                ⏳ This site will be deleted in 3 days.
-              </p>
-              <button className="button" onClick={resetAll} type="button">
-                Deploy another site
-              </button>
-            </div>
-          ) : (
-            <>
-              {/* ---------- STEP 1: PICK ZIP ---------- */}
-              <label
-                className={`dropzone${dragging ? " dragging" : ""}`}
-                htmlFor="zipFile"
-                onDragEnter={(e) => {
-                  e.preventDefault();
-                  if (!uploading) setDragging(true);
-                }}
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  if (!uploading) setDragging(true);
-                }}
-                onDragLeave={(e) => {
-                  e.preventDefault();
-                  setDragging(false);
-                }}
-                onDrop={handleDrop}
-              >
-                <div className="upload-icon">📦</div>
-                <strong>Drop your ZIP file here</strong>
-                <span>or click to browse your files</span>
-                <span className="dropzone-hint">
-                  ZIP archives only · Max 50 MB
-                </span>
-              </label>
-
-              <input
-                ref={fileInputRef}
-                className="file-input"
-                id="zipFile"
-                name="file"
-                type="file"
-                accept=".zip,application/zip,application/x-zip-compressed"
-                onChange={(e) => selectFile(e.target.files?.[0])}
-              />
-
-              {status?.type === "error" && (
-                <div className="home-inline-error" role="alert">
-                  {status.message}
-                </div>
-              )}
-
-              <Link className="guide-link" to="/guide">
-                Read the deployment guide
+          <div className="lp-cta-row">
+            <Link className="lp-btn" to={primaryTo}>
+              {primaryLabel}
+            </Link>
+            {loggedIn ? (
+              <Link className="lp-btn ghost" to="/guide">
+                Read the guide
               </Link>
-            </>
-          )}
-        </section>
+            ) : (
+              <Link className="lp-btn ghost" to="/login">
+                Log in
+              </Link>
+            )}
+          </div>
 
-        {/* ---------- RIGHT: PENGUIN + NOTICE ---------- */}
+          <div className="lp-pills">
+            <span>ZIP in, URL out</span>
+            <span>Max 50 MB</span>
+            <span>Free demo</span>
+          </div>
+        </div>
+
         <aside className="home-pengu-side">
           <div className="home-notice">
             ⏳ Sites are <strong>automatically deleted after 3 days</strong>.
-            This is a demo project — save anything you want to keep.
+            This is a demo project, so save anything you want to keep.
           </div>
 
           <div className="home-pengu-stage">
+            <div className="lp-url-chip" aria-hidden="true">
+              🌐 staticpengu.b-cdn.net/<strong>my-portfolio</strong>/
+            </div>
             <svg
               viewBox="0 0 400 500"
               xmlns="http://www.w3.org/2000/svg"
@@ -308,89 +154,75 @@ const Home = () => {
             🐧 Static website hosting · HTML, CSS and JavaScript
           </p>
         </aside>
-      </div>
+      </section>
 
-      {/* ---------- STEP 2: NAME MODAL ---------- */}
-      {showNameModal && selectedFile && (
-        <div className="modal-backdrop" onClick={cancelModal}>
-          <div
-            className="modal"
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
-          >
-            <div className="modal-header">
-              <span className="modal-step">Step 2 of 2</span>
-              <h2 id="modal-title">Name your site</h2>
-              <p className="modal-file">
-                📦 <strong>{selectedFile.name}</strong>{" "}
-                <span>({formatBytes(selectedFile.size)})</span>
-              </p>
-            </div>
+      {/* ---------- HOW IT WORKS ---------- */}
+      <section className="lp-section" id="how-it-works">
+        <h2 className="lp-title">How it works</h2>
+        <p className="lp-section-sub">Three steps from folder to live website.</p>
 
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="name-field">
-                <label htmlFor="siteName">Site name</label>
-                <input
-                  id="siteName"
-                  type="text"
-                  maxLength={40}
-                  placeholder="my-portfolio"
-                  autoComplete="off"
-                  spellCheck={false}
-                  autoFocus
-                  value={siteName}
-                  onChange={(e) => setSiteName(e.target.value)}
-                />
-                <span className="name-preview">
-                  URL:{" "}
-                  <strong>
-                    staticpengu.b-cdn.net/
-                    <span>{slug || "your-name"}</span>/
-                  </strong>
-                </span>
-              </div>
+        <div className="lp-steps">
+          {steps.map((step, i) => (
+            <article className="lp-card lp-step" key={step.title}>
+              <span className="lp-step-num">{i + 1}</span>
+              <div className="lp-icon">{step.icon}</div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-              {uploading && (
-                <div className="modal-progress">
-                  <div className="progress-track">
-                    <div
-                      className="progress-bar"
-                      style={{ width: `${progress}%` }}
-                    />
-                  </div>
-                  <span className="progress-text">{progressText}</span>
-                </div>
-              )}
+      {/* ---------- FEATURES ---------- */}
+      <section className="lp-section">
+        <h2 className="lp-title">Everything you need</h2>
+        <p className="lp-section-sub">
+          Just enough features to get a static site online, nothing more.
+        </p>
 
-              {status?.type === "error" && (
-                <div className="home-inline-error" role="alert">
-                  {status.message}
-                </div>
-              )}
+        <div className="lp-features">
+          {features.map((f, i) => (
+            <article className={`lp-card lp-feature tone-${i % 3}`} key={f.title}>
+              <div className="lp-icon small">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-              <div className="modal-actions">
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={cancelModal}
-                  disabled={uploading}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="button"
-                  disabled={!isValidSlug(slug) || uploading}
-                >
-                  {uploading ? "Uploading..." : "Deploy website"}
-                </button>
-              </div>
-            </form>
+      {/* ---------- BUILT WITH ---------- */}
+      <section className="lp-section">
+        <div className="lp-built">
+          <h2 className="lp-title left">Built from scratch</h2>
+          <p>
+            StaticPengu is a personal portfolio project, built end to end: a
+            React frontend, an ExpressJS API, MongoDB for storage, BunnyCDN for
+            delivery and Docker for shipping it.
+          </p>
+          <div className="lp-stack">
+            {stack.map((tech) => (
+              <span key={tech}>{tech}</span>
+            ))}
           </div>
         </div>
-      )}
+      </section>
+
+      {/* ---------- FINAL CTA ---------- */}
+      <section className="lp-section lp-final">
+        <div className="lp-final-card">
+          <h2>Ready to deploy your first site?</h2>
+          <p>It takes about a minute. Your ZIP is waiting.</p>
+          <div className="lp-cta-row center">
+            <Link className="lp-btn" to={primaryTo}>
+              {primaryLabel}
+            </Link>
+            <Link className="lp-btn ghost" to="/guide">
+              Read the guide
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
     <div>
       <MainNavbar />
       <main>
-        <Routes>{children}</Routes>
+        {children}
       </main>{" "}
       <Footer />
     </div>
