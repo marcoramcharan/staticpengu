@@ -17,16 +17,16 @@ const Navbar = () => {
 
       <div className="navbar-links">
         <Link
-          to="/"
-          className={`navbar-link${pathname === "/" ? " active" : ""}`}
+          to="/login"
+          className={`navbar-link${pathname === "/login" ? " active" : ""}`}
         >
-          Upload
+          Login
         </Link>
         <Link
-          to="/guide"
-          className={`navbar-link${pathname === "/guide" ? " active" : ""}`}
+          to="/signup"
+          className={`navbar-link${pathname === "/signup" ? " active" : ""}`}
         >
-          Guide
+          Signup
         </Link>
       </div>
     </nav>
