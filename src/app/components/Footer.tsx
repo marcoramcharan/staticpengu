@@ -13,15 +13,14 @@ const Footer = () => {
                 viewBox="0 0 64 64"
                 aria-hidden="true"
               >
-                <rect width="64" height="64" rx="18" fill="#0f1b45" />
-                <rect x=".75" y=".75" width="62.5" height="62.5" rx="17.25" fill="none" stroke="#7cc8ff" strokeOpacity=".5" strokeWidth="1.5" />
-                <path d="M32,12 C42,12 46,20 46,28 C52,36 52,50 32,56 C12,50 12,36 18,28 C18,20 22,12 32,12 Z" fill="#0b1536" />
-                <path d="M32,30 C41,30 45,38 45,44 C45,50 40,55 32,55 C24,55 19,50 19,44 C19,38 23,30 32,30 Z" fill="#fff" />
-                <ellipse cx="25" cy="24" rx="3" ry="3.4" fill="#fff" />
-                <ellipse cx="39" cy="24" rx="3" ry="3.4" fill="#fff" />
-                <circle cx="25.4" cy="24.4" r="1.4" fill="#05070f" />
-                <circle cx="38.6" cy="24.4" r="1.4" fill="#05070f" />
-                <path d="M28.5,29 L35.5,29 L32,36 Z" fill="#ffb347" />
+                <rect x="3" y="3" width="58" height="58" rx="18" fill="#5cc8ff" stroke="#0a1a4f" strokeWidth="4" />
+                <path d="M32 12 C43 12 49 21 49 31 C49 46 42 54 32 54 C22 54 15 46 15 31 C15 21 21 12 32 12Z" fill="#12307f" stroke="#0a1a4f" strokeWidth="3" />
+                <path d="M32 28 C40 29 44 36 43 43 C42 50 38 53 32 53 C26 53 22 50 21 43 C20 36 24 29 32 28Z" fill="#fff" stroke="#0a1a4f" strokeWidth="2.5" />
+                <ellipse cx="25.5" cy="24" rx="4.4" ry="5.2" fill="#fff" stroke="#0a1a4f" strokeWidth="2.5" />
+                <ellipse cx="38.5" cy="24" rx="4.4" ry="5.2" fill="#fff" stroke="#0a1a4f" strokeWidth="2.5" />
+                <circle cx="26.4" cy="25" r="2.2" fill="#0a1a4f" />
+                <circle cx="37.6" cy="25" r="2.2" fill="#0a1a4f" />
+                <path d="M28 29.5 Q32 27.5 36 29.5 Q35 34.5 32 35.5 Q29 34.5 28 29.5Z" fill="#ffb629" stroke="#0a1a4f" strokeWidth="2.2" strokeLinejoin="round" />
               </svg>
               <span className="footer-brand-text">
                 Static<span>Pengu</span>

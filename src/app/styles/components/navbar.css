@@ -1,20 +1,28 @@
 /* src/styles/components/navbar.css */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800&display=swap");
 
 /* ---- theme variables (used by navbar, footer and home) ---- */
 :root {
-  --sp-night: #030a22;
-  --sp-navy: #061236;
-  --sp-deep: #0a1d5c;
-  --sp-royal: #1646d9;
-  --sp-azure: #2f8bff;
-  --sp-sky: #7cc8ff;
-  --sp-pale: #bfe3ff;
-  --sp-ice: #e8f5ff;
+  /* the old --sp-* names are kept so nothing else breaks; values are new */
+  --sp-night: #071445;
+  --sp-navy: #0f2a78;
+  --sp-deep: #12307f;
+  --sp-royal: #2563eb;
+  --sp-azure: #3b82f6;
+  --sp-sky: #5cc8ff;
+  --sp-pale: #c9efff;
+  --sp-ice: #eefaff;
   --sp-cyan: #4fd8ff;
-  --sp-cut: 110px; /* height of the angled section edges */
-  --sp-display: "Sora", system-ui, sans-serif;
-  --sp-body: "Inter", system-ui, sans-serif;
+
+  /* new cartoon tokens */
+  --sp-ink: #0a1a4f; /* outline colour for everything */
+  --sp-sun: #ffb629;
+  --sp-orange: #ff8a1f;
+  --sp-mint: #3ddc97;
+
+  --sp-cut: 110px; /* legacy, no longer used by home */
+  --sp-display: "Baloo 2", "Nunito", system-ui, sans-serif;
+  --sp-body: "Nunito", system-ui, sans-serif;
 }
 
 @media (max-width: 760px) {
@@ -30,16 +38,14 @@
   box-sizing: border-box;
 }
 
-
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(3, 10, 34, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(124, 200, 255, 0.14);
+  background: var(--sp-deep);
+  border-bottom: 5px solid var(--sp-ink);
   font-family: var(--sp-body);
+  font-weight: 700;
   color: #fff;
 }
 
@@ -48,39 +54,44 @@
   align-items: center;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 14px clamp(20px, 5vw, 48px);
+  padding: 10px clamp(20px, 5vw, 48px);
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   color: #fff;
   text-decoration: none;
   font-family: var(--sp-display);
   font-weight: 800;
-  font-size: 22px;
-  letter-spacing: -0.04em;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
 
 .navbar-brand-icon {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   flex: none;
+  filter: drop-shadow(0 3px 0 var(--sp-ink));
+  transform: rotate(-6deg);
+  transition: transform 0.2s;
+}
+
+.navbar-brand:hover .navbar-brand-icon {
+  transform: rotate(6deg) scale(1.06);
 }
 
 .navbar-brand-text span {
-  background: linear-gradient(90deg, var(--sp-pale), var(--sp-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--sp-sun);
 }
 
 .navbar-links {
   display: flex;
-  gap: 32px;
+  gap: 30px;
   margin-left: auto;
-  margin-right: 34px;
+  margin-right: 28px;
 }
 
 .navbar-link {
@@ -88,8 +99,8 @@
   padding: 6px 0;
   color: var(--sp-pale);
   font-family: var(--sp-display);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -99,9 +110,10 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 2px;
+  height: 4px;
   width: 0;
-  background: var(--sp-cyan);
+  border-radius: 4px;
+  background: var(--sp-sun);
   transition: width 0.25s;
 }
 
@@ -118,7 +130,7 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 16px;
 }
 
 /* burger (mobile only) */
@@ -131,27 +143,34 @@
   width: 46px;
   height: 46px;
   border-radius: 14px;
-  border: 1px solid rgba(124, 200, 255, 0.32);
-  background: rgba(255, 255, 255, 0.06);
+  border: 3px solid var(--sp-ink);
+  background: #fff;
+  box-shadow: 0 4px 0 var(--sp-ink);
   cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.navbar-burger:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--sp-ink);
 }
 
 .navbar-burger span {
   width: 20px;
-  height: 2px;
-  border-radius: 2px;
-  background: #fff;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--sp-ink);
   transition: transform 0.3s, opacity 0.2s;
 }
 
 .navbar-burger.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 .navbar-burger.open span:nth-child(2) {
   opacity: 0;
 }
 .navbar-burger.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* full-screen mobile menu (sits UNDER the sticky bar, so the bar stays tappable) */
@@ -161,11 +180,11 @@
   z-index: 90;
   display: flex;
   flex-direction: column;
-  padding: 96px clamp(20px, 6vw, 48px) 32px;
+  padding: 100px clamp(20px, 6vw, 48px) 32px;
   overflow-y: auto;
-  background: radial-gradient(600px 400px at 90% 10%, rgba(47, 139, 255, 0.45), transparent 65%),
-    radial-gradient(500px 400px at 0% 100%, rgba(79, 216, 255, 0.22), transparent 65%),
-    linear-gradient(170deg, #061236, #030a22);
+  background: radial-gradient(520px 360px at 90% 8%, rgba(92, 200, 255, 0.5), transparent 65%),
+    radial-gradient(460px 360px at 0% 100%, rgba(37, 99, 235, 0.55), transparent 65%),
+    linear-gradient(170deg, #1a46b8, #0f2a78 60%, #071445);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-14px);
@@ -188,33 +207,34 @@
   display: flex;
   align-items: baseline;
   gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(124, 200, 255, 0.16);
+  padding: 12px 0;
+  border-bottom: 3px dashed rgba(201, 239, 255, 0.3);
   color: #fff;
   font-family: var(--sp-display);
   font-weight: 800;
   font-size: min(11vw, 7.5vh, 56px);
-  letter-spacing: -0.04em;
   line-height: 1.1;
   text-decoration: none;
+  text-shadow: 0 4px 0 var(--sp-ink);
   transition: color 0.2s, padding 0.2s;
 }
 
 .navbar-menu-links a small {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 800;
   letter-spacing: 0.1em;
-  color: var(--sp-cyan);
+  color: var(--sp-sun);
+  text-shadow: none;
 }
 
 .navbar-menu-links a:hover {
-  color: var(--sp-cyan);
+  color: var(--sp-sun);
   padding-left: 8px;
 }
 
 .navbar-menu-bottom {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   margin-top: 28px;
 }
 
@@ -224,51 +244,48 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
+  border: 4px solid var(--sp-ink);
   border-radius: 999px;
-  background: linear-gradient(135deg, #d4efff, #62c6ff 60%, #3aa4ff);
-  color: var(--sp-night);
+  background: var(--sp-sun);
+  color: var(--sp-ink);
   font-family: var(--sp-display);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-weight: 800;
   text-decoration: none;
-  box-shadow: 0 12px 40px -10px rgba(79, 216, 255, 0.75),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 5px 0 var(--sp-ink);
+  transition: transform 0.12s, box-shadow 0.12s, background 0.2s;
 }
 
 .navbar-cta {
-  padding: 10px 22px;
-  font-size: 14px;
+  padding: 7px 22px;
+  font-size: 17px;
 }
 
 .navbar-menu-btn {
   width: 100%;
-  padding: 16px 30px;
-  font-size: 15px;
+  padding: 14px 30px;
+  font-size: 19px;
 }
 
 .navbar-cta:hover,
 .navbar-menu-btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--sp-ink);
+}
+
+.navbar-cta:active,
+.navbar-menu-btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 var(--sp-ink);
 }
 
 .navbar-menu-btn.ghost {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(191, 227, 255, 0.35);
-  box-shadow: none;
-}
-
-.navbar-menu-btn.ghost:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(191, 227, 255, 0.7);
+  background: #fff;
 }
 
 .navbar a:focus-visible,
 .navbar button:focus-visible,
 .navbar-menu a:focus-visible {
-  outline: 3px solid var(--sp-cyan);
+  outline: 3px solid var(--sp-sun);
   outline-offset: 3px;
 }
 
@@ -296,7 +313,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .navbar-menu,
+  .navbar-burger,
   .navbar-burger span,
+  .navbar-brand-icon,
   .navbar-link::after,
   .navbar-cta,
   .navbar-menu-btn {

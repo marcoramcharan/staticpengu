@@ -90,12 +90,69 @@ const stack = [
 const STEPS = ["Zip uploaded", "Unpacked", "Deployed to the BunnyCDN edge"];
 const PROGRESS = [0, 34, 68, 100, 100];
 
+/* twinkly cartoon stars scattered in the dark sections */
+const STARS = [
+  { left: "5%", top: "12%", size: 22, delay: "0s" },
+  { left: "44%", top: "7%", size: 18, delay: ".6s" },
+  { left: "91%", top: "16%", size: 24, delay: "1.2s" },
+  { left: "52%", top: "58%", size: 14, delay: ".3s" },
+  { left: "3%", top: "62%", size: 16, delay: "1.6s" },
+  { left: "70%", top: "80%", size: 18, delay: ".9s" },
+];
+
+/* wavy section edges: [open top curve] — the fill is closed off below it */
+const WAVE_PATHS = [
+  "M0 70 C180 10 320 120 520 70 C720 20 860 120 1060 70 C1220 30 1340 60 1440 40",
+  "M0 50 C200 110 360 0 580 50 C800 100 980 10 1200 60 C1320 85 1400 60 1440 70",
+  "M0 60 C240 0 400 120 640 60 C880 0 1060 110 1260 50 C1350 25 1410 50 1440 45",
+  "M0 40 C220 100 420 0 660 55 C900 110 1100 20 1300 60 C1380 76 1420 60 1440 55",
+];
+
+/** Cartoon wave that sits at the bottom of a section and takes the colour
+ *  of the section underneath it. */
+const Wave = ({ fill, variant }: { fill: string; variant: number }) => {
+  const d = WAVE_PATHS[variant % WAVE_PATHS.length];
+  return (
+    <div className="hp-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d={`${d} L1440 126 L0 126 Z`} fill={fill} />
+        <path
+          d={d}
+          fill="none"
+          stroke="#0a1a4f"
+          strokeWidth="5"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    </div>
+  );
+};
+
+const Cloud = ({
+  className,
+  fill = "#fff",
+}: {
+  className: string;
+  fill?: string;
+}) => (
+  <svg className={`hp-cloud ${className}`} viewBox="0 0 180 70" aria-hidden="true">
+    <path
+      d="M20 62 C-4 62 -4 32 22 32 C26 8 62 4 72 24 C84 6 120 10 124 34 C152 30 164 62 138 62Z"
+      fill={fill}
+      stroke="#0a1a4f"
+      strokeWidth="5"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 const Check = () => (
   <svg
     viewBox="0 0 12 12"
     fill="none"
-    stroke="#03102e"
-    strokeWidth="2.4"
+    stroke="#0a1a4f"
+    strokeWidth="2.6"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -103,7 +160,7 @@ const Check = () => (
   </svg>
 );
 
-/** Little glass card that loops an upload -> live animation. */
+/** Little cartoon card that loops an upload -> live animation. */
 const DeployCard = () => {
   // 0 = idle, 1..3 = steps done, 4 = live
   const [step, setStep] = useState(0);
@@ -171,116 +228,58 @@ const DeployCard = () => {
   );
 };
 
-/** The hero penguin standing on his iceberg. Defines the shared artwork
+/** The hero penguin standing on his ice floe. Defines the shared artwork
  *  (#hp-penguin) that the closing call-to-action also re-uses. */
 const PenguinScene = () => (
   <svg
     className="hp-pengu"
-    viewBox="0 0 640 830"
+    viewBox="0 0 380 380"
     role="img"
-    aria-label="Illustration of an emperor penguin standing on an iceberg"
+    aria-label="Illustration of a cartoon penguin standing on an ice floe"
   >
     <defs>
-      <linearGradient id="hp-gBody" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#27396f" /><stop offset=".35" stopColor="#0f1b45" /><stop offset="1" stopColor="#040815" />
-      </linearGradient>
-      <linearGradient id="hp-gRim" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stopColor="#7cc8ff" stopOpacity=".5" /><stop offset=".14" stopColor="#7cc8ff" stopOpacity="0" />
-        <stop offset=".82" stopColor="#4fd8ff" stopOpacity="0" /><stop offset="1" stopColor="#9ee6ff" stopOpacity=".75" />
-      </linearGradient>
-      <radialGradient id="hp-gHeadShine" cx=".38" cy=".22" r=".5">
-        <stop offset="0" stopColor="#8fb0ff" stopOpacity=".55" /><stop offset="1" stopColor="#8fb0ff" stopOpacity="0" />
-      </radialGradient>
-      <linearGradient id="hp-gBelly" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#ffe9ae" /><stop offset=".2" stopColor="#fff6e0" /><stop offset=".42" stopColor="#ffffff" /><stop offset=".8" stopColor="#d6ebff" /><stop offset="1" stopColor="#a9cdef" />
-      </linearGradient>
-      <radialGradient id="hp-gBellyShade" cx=".5" cy=".5" r=".62">
-        <stop offset=".5" stopColor="#2a56b8" stopOpacity="0" /><stop offset="1" stopColor="#1b3f9a" stopOpacity=".55" />
-      </radialGradient>
-      <radialGradient id="hp-gEar" cx=".5" cy=".5" r=".5">
-        <stop offset="0" stopColor="#ff9a12" /><stop offset=".55" stopColor="#ffc247" /><stop offset="1" stopColor="#ffe08a" stopOpacity="0" />
-      </radialGradient>
-      <linearGradient id="hp-gNeck" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#ffb52e" stopOpacity=".95" /><stop offset=".6" stopColor="#ffe08a" stopOpacity=".6" /><stop offset="1" stopColor="#ffe9ae" stopOpacity="0" />
-      </linearGradient>
-      <linearGradient id="hp-gBeak" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stopColor="#11162b" /><stop offset=".5" stopColor="#2a3150" /><stop offset="1" stopColor="#11162b" />
-      </linearGradient>
-      <linearGradient id="hp-gBeakStripe" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#ff8a3d" /><stop offset="1" stopColor="#ff5f8a" />
-      </linearGradient>
-      <linearGradient id="hp-gFlip" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stopColor="#050a1e" /><stop offset=".6" stopColor="#101d4a" /><stop offset="1" stopColor="#1e2f66" />
-      </linearGradient>
-      <linearGradient id="hp-gFoot" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#ffb347" /><stop offset="1" stopColor="#d9591a" />
-      </linearGradient>
-      <linearGradient id="hp-gIceTop" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#ffffff" /><stop offset="1" stopColor="#cfe9ff" />
-      </linearGradient>
-      <linearGradient id="hp-gIceFront" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#8fd0ff" /><stop offset=".55" stopColor="#3f93ec" /><stop offset="1" stopColor="#1646d9" />
-      </linearGradient>
-      <filter id="hp-blur6"><feGaussianBlur stdDeviation="6" /></filter>
-
-      <path id="hp-bodyShape" d="M250,34 C302,34 334,72 336,122 C338,160 332,186 348,216 C404,272 412,430 394,542 C382,626 336,696 250,699 C164,696 118,626 106,542 C88,430 96,272 152,216 C168,186 162,160 164,122 C166,72 198,34 250,34 Z" />
-      <clipPath id="hp-bodyClip"><use href="#hp-bodyShape" /></clipPath>
-
       <g id="hp-penguin">
-        <ellipse cx="250" cy="702" rx="170" ry="20" fill="#021033" opacity=".55" filter="url(#hp-blur6)" />
-        <g>
-          <path d="M150,690 C150,668 190,664 224,672 C238,690 232,706 214,710 C190,714 160,708 150,690 Z" fill="url(#hp-gFoot)" />
-          <path d="M350,690 C350,668 310,664 276,672 C262,690 268,706 286,710 C310,714 340,708 350,690 Z" fill="url(#hp-gFoot)" />
-          <path d="M162,696 q10,8 24,8 M184,690 q8,8 22,10 M206,684 q6,8 16,12" stroke="#a63f0e" strokeWidth="2.4" fill="none" strokeLinecap="round" opacity=".7" />
-          <path d="M338,696 q-10,8 -24,8 M316,690 q-8,8 -22,10 M294,684 q-6,8 -16,12" stroke="#a63f0e" strokeWidth="2.4" fill="none" strokeLinecap="round" opacity=".7" />
-        </g>
-        <use href="#hp-bodyShape" fill="url(#hp-gBody)" />
-        <g clipPath="url(#hp-bodyClip)">
-          <rect x="60" y="20" width="380" height="700" fill="url(#hp-gRim)" />
-          <ellipse cx="205" cy="90" rx="95" ry="70" fill="url(#hp-gHeadShine)" />
-        </g>
-        <path d="M250,198 C318,198 358,262 358,366 C358,480 330,602 250,676 C170,602 142,480 144,366 C142,262 182,198 250,198 Z" fill="url(#hp-gBelly)" />
-        <path d="M250,198 C318,198 358,262 358,366 C358,480 330,602 250,676 C170,602 142,480 144,366 C142,262 182,198 250,198 Z" fill="url(#hp-gBellyShade)" />
-        <path d="M200,330 C216,420 214,520 232,610 M300,330 C284,420 286,520 268,610 M250,300 L250,640" stroke="#9ec3ee" strokeWidth="2" fill="none" opacity=".18" strokeLinecap="round" />
-        <path d="M168,128 C150,200 188,236 250,246 C312,236 350,200 332,128 C318,186 292,214 250,214 C208,214 182,186 168,128 Z" fill="url(#hp-gNeck)" />
-        <ellipse cx="184" cy="150" rx="26" ry="44" transform="rotate(-8 184 150)" fill="url(#hp-gEar)" />
-        <ellipse cx="316" cy="150" rx="26" ry="44" transform="rotate(8 316 150)" fill="url(#hp-gEar)" />
-        <g>
-          <path d="M156,236 C104,262 70,350 66,468 C66,494 88,500 100,480 C134,420 172,340 182,262 Z" fill="url(#hp-gFlip)" />
-          <path d="M156,238 C108,266 76,350 72,462" stroke="#7cc8ff" strokeOpacity=".5" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          <path d="M344,236 C396,262 430,350 434,468 C434,494 412,500 400,480 C366,420 328,340 318,262 Z" fill="url(#hp-gFlip)" />
-          <path d="M344,238 C392,266 424,350 428,462" stroke="#9ee6ff" strokeOpacity=".75" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-        </g>
-        <path d="M229,124 C235,114 265,114 271,124 L265,194 C261,210 239,210 235,194 Z" fill="url(#hp-gBeak)" />
-        <path d="M229,126 L236,192 C237,198 242,202 247,203 L247,128 Z" fill="url(#hp-gBeakStripe)" />
-        <path d="M271,126 L264,192 C263,198 258,202 253,203 L253,128 Z" fill="url(#hp-gBeakStripe)" />
-        <path d="M244,122 L246,170" stroke="#fff" strokeOpacity=".5" strokeWidth="2.4" strokeLinecap="round" />
-        <g>
-          <ellipse cx="206" cy="102" rx="13" ry="14" fill="#05070f" />
-          <ellipse cx="206" cy="102" rx="13" ry="14" fill="none" stroke="#3b4d86" strokeWidth="2" />
-          <circle cx="202" cy="97" r="4.6" fill="#fff" /><circle cx="211" cy="108" r="2" fill="#bfe3ff" />
-          <ellipse cx="294" cy="102" rx="13" ry="14" fill="#05070f" />
-          <ellipse cx="294" cy="102" rx="13" ry="14" fill="none" stroke="#3b4d86" strokeWidth="2" />
-          <circle cx="290" cy="97" r="4.6" fill="#fff" /><circle cx="299" cy="108" r="2" fill="#bfe3ff" />
-        </g>
-        <path d="M156,222 C100,280 94,430 112,540" stroke="#7cc8ff" strokeOpacity=".35" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <path d="M344,222 C402,280 408,430 390,540" stroke="#9ee6ff" strokeOpacity=".7" strokeWidth="3" fill="none" strokeLinecap="round" />
+        {/* feet */}
+        <ellipse cx="85" cy="288" rx="32" ry="13" fill="#ff8a1f" stroke="#0a1a4f" strokeWidth="6" />
+        <ellipse cx="175" cy="288" rx="32" ry="13" fill="#ff8a1f" stroke="#0a1a4f" strokeWidth="6" />
+        {/* flippers */}
+        <path d="M38 150 C-5 190 5 240 38 245 C55 215 60 180 55 150Z" fill="#1a46b8" stroke="#0a1a4f" strokeWidth="6" strokeLinejoin="round" />
+        <path d="M222 150 C265 190 255 240 222 245 C205 215 200 180 205 150Z" fill="#1a46b8" stroke="#0a1a4f" strokeWidth="6" strokeLinejoin="round" />
+        {/* body */}
+        <path d="M130 20 C60 20 32 90 32 170 C32 250 70 290 130 290 C190 290 228 250 228 170 C228 90 200 20 130 20Z" fill="#1a46b8" stroke="#0a1a4f" strokeWidth="7" />
+        {/* belly */}
+        <path d="M130 90 C85 100 68 160 72 205 C76 258 100 280 130 280 C160 280 184 258 188 205 C192 160 175 100 130 90Z" fill="#f4fbff" stroke="#0a1a4f" strokeWidth="5" />
+        {/* face patch */}
+        <path d="M130 60 C90 50 70 85 85 115 C100 105 118 108 130 120 C142 108 160 105 175 115 C190 85 170 50 130 60Z" fill="#f4fbff" stroke="#0a1a4f" strokeWidth="5" />
+        {/* eyes */}
+        <ellipse cx="102" cy="88" rx="17" ry="21" fill="#fff" stroke="#0a1a4f" strokeWidth="5" />
+        <ellipse cx="158" cy="88" rx="17" ry="21" fill="#fff" stroke="#0a1a4f" strokeWidth="5" />
+        <circle cx="106" cy="92" r="10" fill="#0a1a4f" />
+        <circle cx="154" cy="92" r="10" fill="#0a1a4f" />
+        <circle cx="110" cy="87" r="4" fill="#fff" />
+        <circle cx="158" cy="87" r="4" fill="#fff" />
+        {/* brows */}
+        <path d="M86 62 Q102 54 116 64" stroke="#0a1a4f" strokeWidth="5" fill="none" strokeLinecap="round" />
+        <path d="M144 64 Q158 54 174 62" stroke="#0a1a4f" strokeWidth="5" fill="none" strokeLinecap="round" />
+        {/* beak */}
+        <path d="M112 108 Q130 98 148 108 Q146 134 130 138 Q114 134 112 108Z" fill="#ffb629" stroke="#0a1a4f" strokeWidth="5" strokeLinejoin="round" />
+        <path d="M118 114 Q130 118 142 114" stroke="#0a1a4f" strokeWidth="3" fill="none" strokeLinecap="round" />
+        {/* blush */}
+        <ellipse cx="80" cy="118" rx="10" ry="6" fill="#ff9fb4" opacity=".7" />
+        <ellipse cx="180" cy="118" rx="10" ry="6" fill="#ff9fb4" opacity=".7" />
+        {/* belly shine */}
+        <path d="M96 170 Q92 200 100 226" stroke="#c9efff" strokeWidth="7" fill="none" strokeLinecap="round" />
       </g>
     </defs>
-    <g>
-      <ellipse cx="320" cy="790" rx="280" ry="22" fill="#021033" opacity=".35" filter="url(#hp-blur6)" />
-      <path d="M14,722 L100,700 L250,712 L400,698 L545,706 L626,730 L560,790 L330,816 L100,796 L20,760 Z" fill="url(#hp-gIceFront)" />
-      <path d="M14,722 L100,700 L250,712 L400,698 L545,706 L626,730 L540,752 L330,764 L110,754 L20,740 Z" fill="url(#hp-gIceTop)" />
-      <path d="M140,754 L170,800 L330,816 L300,764 Z" fill="#fff" opacity=".12" />
-      <path d="M400,760 L430,806 L560,790 L585,744 Z" fill="#0a1d5c" opacity=".25" />
-      <path d="M300,764 L330,816 L430,806 L400,760 Z" fill="#fff" opacity=".08" />
-      <g fill="#fff" opacity=".85">
-        <circle cx="90" cy="742" r="2.5" />
-        <circle cx="480" cy="728" r="2" />
-        <circle cx="560" cy="742" r="3" />
-      </g>
+
+    {/* ice floe */}
+    <g transform="translate(20,300)">
+      <path d="M10 30 L70 8 L270 8 L330 30 L290 60 L50 60Z" fill="#c9efff" stroke="#0a1a4f" strokeWidth="6" strokeLinejoin="round" />
+      <path d="M70 8 L110 30 L50 60 M270 8 L230 30 L290 60 M110 30 L230 30" fill="none" stroke="#0a1a4f" strokeWidth="4" strokeLinejoin="round" />
     </g>
-    <g transform="translate(66,12) scale(.97)">
+
+    {/* penguin */}
+    <g transform="translate(60,22)">
       <use href="#hp-penguin" />
     </g>
   </svg>
@@ -309,13 +308,13 @@ const Home = () => {
   // falling snow (generated once)
   const flakes = useMemo(
     () =>
-      Array.from({ length: 42 }, () => {
-        const size = 2 + Math.random() * 4;
+      Array.from({ length: 34 }, () => {
+        const size = 4 + Math.random() * 7;
         return {
           left: `${Math.random() * 100}%`,
           width: size,
           height: size,
-          opacity: 0.25 + Math.random() * 0.55,
+          opacity: 0.35 + Math.random() * 0.55,
           animationDuration: `${9 + Math.random() * 14}s`,
           animationDelay: `-${Math.random() * 20}s`,
           "--dx": `${Math.random() * 80 - 40}px`,
@@ -334,6 +333,23 @@ const Home = () => {
             <i key={i} style={style} />
           ))}
         </div>
+        {STARS.map((s, i) => (
+          <span
+            key={i}
+            className="hp-star"
+            aria-hidden="true"
+            style={{
+              left: s.left,
+              top: s.top,
+              fontSize: s.size,
+              animationDelay: s.delay,
+            }}
+          >
+            ✦
+          </span>
+        ))}
+        <Cloud className="hp-cloud--a" />
+        <Cloud className="hp-cloud--b" fill="#c9efff" />
 
         <div className="lp-wrap">
           <div className="hp-hero-in">
@@ -387,11 +403,13 @@ const Home = () => {
             <aside className="hp-stage">
               <div className="hp-glow" />
               <div className="hp-disc" />
-              <DeployCard />
               <PenguinScene />
+              <DeployCard />
             </aside>
           </div>
         </div>
+
+        <Wave fill="#eefaff" variant={0} />
       </header>
 
       {/* ---------- HOW IT WORKS ---------- */}
@@ -413,10 +431,16 @@ const Home = () => {
             ))}
           </div>
         </div>
+
+        <Wave fill="#12307f" variant={1} />
       </section>
 
       {/* ---------- FEATURES ---------- */}
       <section className="hp-feat" id="features">
+        <span className="hp-bubble hp-bubble--a" aria-hidden="true" />
+        <span className="hp-bubble hp-bubble--b" aria-hidden="true" />
+        <span className="hp-bubble hp-bubble--c" aria-hidden="true" />
+
         <div className="lp-wrap">
           <div className="hp-head">
             <h2>Everything you need</h2>
@@ -440,6 +464,8 @@ const Home = () => {
             ))}
           </div>
         </div>
+
+        <Wave fill="#c9efff" variant={2} />
       </section>
 
       {/* ---------- BUILT WITH ---------- */}
@@ -461,10 +487,28 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        <Wave fill="#1a46b8" variant={3} />
       </section>
 
       {/* ---------- FINAL CTA ---------- */}
       <section className="hp-final">
+        {STARS.slice(0, 3).map((s, i) => (
+          <span
+            key={i}
+            className="hp-star"
+            aria-hidden="true"
+            style={{
+              left: s.left,
+              top: s.top,
+              fontSize: s.size,
+              animationDelay: s.delay,
+            }}
+          >
+            ✦
+          </span>
+        ))}
+
         <div className="lp-wrap">
           <div className="hp-final-in">
             <div>
@@ -483,7 +527,7 @@ const Home = () => {
             </div>
 
             <div className="hp-peek" aria-hidden="true">
-              <svg viewBox="0 0 500 720">
+              <svg viewBox="-10 0 280 310">
                 <use href="#hp-penguin" />
               </svg>
             </div>
