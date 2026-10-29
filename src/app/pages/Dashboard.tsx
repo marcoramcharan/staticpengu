@@ -30,7 +30,7 @@ const slugify = (input: string): string =>
   String(input || "")
     .toLowerCase()
     .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .replace(/-{2,}/g, "-")
@@ -200,6 +200,10 @@ const Dashboard = () => {
     xhr.open("POST", `${API_URL}/api/sites`);
     xhr.withCredentials = true;
 
+    // CHANGED: send the auth token with the upload (XHR bypasses api()).
+    const token = useStore2.getState().token;
+    if (token) xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+
     xhr.upload.addEventListener("progress", (event) => {
       if (!event.lengthComputable) return;
       const percent = Math.round((event.loaded / event.total) * 100);
@@ -239,7 +243,7 @@ const Dashboard = () => {
     xhr.addEventListener("error", () => {
       setUploading(false);
       setProgressText("Upload failed");
-      setModalError("Could not connect to the server. Is it running on localhost:3000?");
+      setModalError("Could not connect to the server.");
     });
 
     xhr.send(body);
