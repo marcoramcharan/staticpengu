@@ -25,16 +25,44 @@ const Guide = () => {
         </div>
 
         <div className="guide-hero-pengu" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <rect width="64" height="64" rx="18" fill="#0f1b45" />
-            <rect x=".75" y=".75" width="62.5" height="62.5" rx="17.25" fill="none" stroke="#7cc8ff" strokeOpacity=".5" strokeWidth="1.5" />
-            <path d="M32,12 C42,12 46,20 46,28 C52,36 52,50 32,56 C12,50 12,36 18,28 C18,20 22,12 32,12 Z" fill="#0b1536" />
-            <path d="M32,30 C41,30 45,38 45,44 C45,50 40,55 32,55 C24,55 19,50 19,44 C19,38 23,30 32,30 Z" fill="#fff" />
-            <ellipse cx="25" cy="24" rx="3" ry="3.4" fill="#fff" />
-            <ellipse cx="39" cy="24" rx="3" ry="3.4" fill="#fff" />
-            <circle cx="25.4" cy="24.4" r="1.4" fill="#05070f" />
-            <circle cx="38.6" cy="24.4" r="1.4" fill="#05070f" />
-            <path d="M28.5,29 L35.5,29 L32,36 Z" fill="#ffb347" />
+          <svg viewBox="-10 0 280 310">
+            <ellipse cx="85" cy="288" rx="32" ry="13" fill="#ff8a1f" stroke="#0a1a4f" strokeWidth="6" />
+            <ellipse cx="175" cy="288" rx="32" ry="13" fill="#ff8a1f" stroke="#0a1a4f" strokeWidth="6" />
+            <path d="M38 150 C-5 190 5 240 38 245 C55 215 60 180 55 150Z" fill="#1a46b8" stroke="#0a1a4f" strokeWidth="6" strokeLinejoin="round" />
+            <path d="M222 150 C265 190 255 240 222 245 C205 215 200 180 205 150Z" fill="#1a46b8" stroke="#0a1a4f" strokeWidth="6" strokeLinejoin="round" />
+            <path d="M130 20 C60 20 32 90 32 170 C32 250 70 290 130 290 C190 290 228 250 228 170 C228 90 200 20 130 20Z" fill="#1a46b8" stroke="#0a1a4f" strokeWidth="7" />
+            <path d="M130 90 C85 100 68 160 72 205 C76 258 100 280 130 280 C160 280 184 258 188 205 C192 160 175 100 130 90Z" fill="#f4fbff" stroke="#0a1a4f" strokeWidth="5" />
+            <path d="M130 60 C90 50 70 85 85 115 C100 105 118 108 130 120 C142 108 160 105 175 115 C190 85 170 50 130 60Z" fill="#f4fbff" stroke="#0a1a4f" strokeWidth="5" />
+            <ellipse cx="102" cy="88" rx="17" ry="21" fill="#fff" stroke="#0a1a4f" strokeWidth="5" />
+            <ellipse cx="158" cy="88" rx="17" ry="21" fill="#fff" stroke="#0a1a4f" strokeWidth="5" />
+            <circle cx="106" cy="92" r="10" fill="#0a1a4f" />
+            <circle cx="154" cy="92" r="10" fill="#0a1a4f" />
+            <circle cx="110" cy="87" r="4" fill="#fff" />
+            <circle cx="158" cy="87" r="4" fill="#fff" />
+            <path d="M86 62 Q102 54 116 64" stroke="#0a1a4f" strokeWidth="5" fill="none" strokeLinecap="round" />
+            <path d="M144 64 Q158 54 174 62" stroke="#0a1a4f" strokeWidth="5" fill="none" strokeLinecap="round" />
+            <path d="M112 108 Q130 98 148 108 Q146 134 130 138 Q114 134 112 108Z" fill="#ffb629" stroke="#0a1a4f" strokeWidth="5" strokeLinejoin="round" />
+            <path d="M118 114 Q130 118 142 114" stroke="#0a1a4f" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <ellipse cx="80" cy="118" rx="10" ry="6" fill="#ff9fb4" opacity=".7" />
+            <ellipse cx="180" cy="118" rx="10" ry="6" fill="#ff9fb4" opacity=".7" />
+            <path d="M96 170 Q92 200 100 226" stroke="#c9efff" strokeWidth="7" fill="none" strokeLinecap="round" />
+          </svg>
+        </div>
+
+        <div className="guide-wave" aria-hidden="true">
+          <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path
+              d="M0 60 C240 0 400 120 640 60 C880 0 1060 110 1260 50 C1350 25 1410 50 1440 45 L1440 126 L0 126 Z"
+              fill="#eefaff"
+            />
+            <path
+              d="M0 60 C240 0 400 120 640 60 C880 0 1060 110 1260 50 C1350 25 1410 50 1440 45"
+              fill="none"
+              stroke="#0a1a4f"
+              strokeWidth="5"
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+            />
           </svg>
         </div>
       </header>

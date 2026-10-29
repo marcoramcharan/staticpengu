@@ -7,32 +7,34 @@ const LOGIN_ENDPOINT = `${API_URL}/api/auth/login`;
 
 const css = `
 .auth-page, .auth-page * { box-sizing: border-box; }
-.auth-page { position: relative; width: 100%; min-height: calc(100vh - 67px); display: flex; align-items: center; justify-content: center; padding: 48px 16px 64px; overflow: hidden; color: #fff; font-family: var(--sp-body); background: radial-gradient(800px 560px at 85% 20%, rgba(47,139,255,.4), transparent 62%), radial-gradient(700px 500px at 0% 100%, rgba(22,70,217,.45), transparent 60%), linear-gradient(160deg, #030a22 0%, #061236 50%, #0a1d5c 100%); }
-.auth-page::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(124,200,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(124,200,255,.05) 1px, transparent 1px); background-size: 64px 64px; -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse at 50% 40%, #000 0%, transparent 70%); }
-.auth-card { position: relative; width: 100%; max-width: 460px; padding: 40px 34px; border-radius: 28px; background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); border: 1px solid rgba(191,227,255,.28); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 40px 90px -30px rgba(2,8,30,.85), inset 0 1px 0 rgba(255,255,255,.22); }
-.auth-brand { display: inline-flex; align-items: center; gap: 11px; margin-bottom: 26px; color: #fff; text-decoration: none; font-family: var(--sp-display); font-weight: 800; font-size: 22px; letter-spacing: -.04em; }
-.auth-brand svg { width: 38px; height: 38px; flex: none; }
-.auth-brand span span { background: linear-gradient(90deg, var(--sp-pale), var(--sp-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.auth-card h1 { margin: 0 0 10px; font-family: var(--sp-display); font-weight: 800; font-size: clamp(32px, 5vw, 44px); line-height: 1.02; letter-spacing: -.04em; text-shadow: none; -webkit-text-stroke: 0; background: linear-gradient(95deg, #fff 0%, var(--sp-pale) 45%, var(--sp-cyan) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.auth-sub { margin: 0 0 28px; font-size: 15px; color: #b9cdea; }
+.auth-page { position: relative; width: 100%; min-height: calc(100vh - 67px); display: flex; align-items: center; justify-content: center; padding: 48px 16px 64px; overflow: hidden; color: var(--sp-ink); font-family: var(--sp-body); font-weight: 700; background: radial-gradient(circle at 80% 25%, #3f8cff 0, transparent 40%), linear-gradient(180deg, #0f2a78 0%, #1a46b8 60%, #2f7cf0 100%); }
+.auth-page::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle, rgba(255,255,255,.55) 2.5px, transparent 3px) 0 0 / 90px 90px, radial-gradient(circle, rgba(201,239,255,.4) 2px, transparent 2.5px) 45px 45px / 90px 90px; }
+.auth-card { position: relative; width: 100%; max-width: 460px; padding: 38px 34px 40px; border-radius: 32px; background: #fff; border: 5px solid var(--sp-ink); box-shadow: 0 12px 0 var(--sp-ink); transform: rotate(-.6deg); }
+.auth-brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; color: var(--sp-deep); text-decoration: none; font-family: var(--sp-display); font-weight: 800; font-size: 26px; line-height: 1; }
+.auth-brand svg { width: 42px; height: 42px; flex: none; filter: drop-shadow(0 3px 0 var(--sp-ink)); transform: rotate(-6deg); transition: transform .2s; }
+.auth-brand:hover svg { transform: rotate(6deg) scale(1.06); }
+.auth-brand span span { color: var(--sp-orange); }
+.auth-card h1 { margin: 0 0 8px; font-family: var(--sp-display); font-weight: 800; font-size: clamp(38px, 6vw, 54px); line-height: 1; color: #fff; -webkit-text-stroke: 2.5px var(--sp-ink); paint-order: stroke fill; text-shadow: 0 5px 0 var(--sp-ink); }
+.auth-sub { margin: 0 0 26px; font-size: 16px; color: #35508f; }
 .auth-form { display: flex; flex-direction: column; gap: 18px; }
 .auth-field { display: flex; flex-direction: column; gap: 8px; }
-.auth-field label { font-family: var(--sp-display); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--sp-sky); }
-.auth-field input { width: 100%; padding: 14px 16px; font: inherit; font-size: 16px; font-weight: 500; color: #fff; background: rgba(3,10,34,.55); border: 1px solid rgba(124,200,255,.3); border-radius: 14px; outline: none; transition: border-color .2s, box-shadow .2s, background .2s; }
-.auth-field input::placeholder { color: #6f88b3; }
-.auth-field input:focus { border-color: var(--sp-cyan); background: rgba(3,10,34,.75); box-shadow: 0 0 0 4px rgba(79,216,255,.18); }
-.auth-field input:-webkit-autofill { -webkit-text-fill-color: #fff; -webkit-box-shadow: 0 0 0 100px #061236 inset; caret-color: #fff; }
-.auth-hint { font-size: 12.5px; color: #8fa8d0; }
-.auth-error { padding: 12px 16px; background: rgba(255,94,120,.12); color: #ffb4c0; border: 1px solid rgba(255,94,120,.4); border-radius: 14px; font-size: 14px; font-weight: 500; }
-.auth-button { width: 100%; margin-top: 6px; padding: 16px 24px; border: 1px solid transparent; border-radius: 999px; background: linear-gradient(135deg, #d4efff, #62c6ff 60%, #3aa4ff); color: var(--sp-night); font-family: var(--sp-display); font-size: 15px; font-weight: 700; letter-spacing: -.01em; cursor: pointer; box-shadow: 0 12px 40px -10px rgba(79,216,255,.75), inset 0 1px 0 rgba(255,255,255,.7); transition: transform .2s, box-shadow .2s, opacity .2s; }
-.auth-button:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 18px 50px -10px rgba(79,216,255,.9), inset 0 1px 0 rgba(255,255,255,.7); }
-.auth-button:disabled { opacity: .55; cursor: not-allowed; }
-.auth-button:focus-visible, .auth-brand:focus-visible, .auth-switch a:focus-visible { outline: 3px solid var(--sp-cyan); outline-offset: 3px; }
-.auth-switch { margin: 24px 0 0; text-align: center; font-size: 14.5px; color: #b9cdea; }
-.auth-switch a { margin-left: 6px; color: var(--sp-cyan); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(79,216,255,.4); transition: color .2s, border-color .2s; }
-.auth-switch a:hover { color: #fff; border-color: #fff; }
-@media (max-width: 500px) { .auth-card { padding: 30px 20px; border-radius: 24px; } }
-@media (prefers-reduced-motion: reduce) { .auth-button, .auth-field input { transition: none; } }
+.auth-field label { font-family: var(--sp-display); font-size: 14px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--sp-deep); }
+.auth-field input { width: 100%; padding: 12px 16px; font: inherit; font-size: 17px; font-weight: 800; color: var(--sp-ink); background: #fff; border: 4px solid var(--sp-ink); border-radius: 16px; outline: none; transition: box-shadow .2s, background .2s; }
+.auth-field input::placeholder { color: #8aa0cf; }
+.auth-field input:focus { background: var(--sp-ice); box-shadow: 0 4px 0 var(--sp-royal); }
+.auth-field input:-webkit-autofill { -webkit-text-fill-color: #0a1a4f; -webkit-box-shadow: 0 0 0 100px #eefaff inset; caret-color: #0a1a4f; }
+.auth-hint { font-size: 13px; color: #35508f; }
+.auth-error { padding: 12px 16px; background: #ffc4d0; color: var(--sp-ink); border: 4px solid var(--sp-ink); border-radius: 18px; box-shadow: 0 4px 0 var(--sp-ink); font-size: 14.5px; font-weight: 800; }
+.auth-button { width: 100%; margin-top: 8px; padding: 11px 24px; border: 4px solid var(--sp-ink); border-radius: 999px; background: var(--sp-sun); color: var(--sp-ink); font-family: var(--sp-display); font-size: 21px; font-weight: 800; cursor: pointer; box-shadow: 0 6px 0 var(--sp-ink); transition: transform .12s, box-shadow .12s, opacity .2s; }
+.auth-button:hover:not(:disabled) { transform: translateY(3px); box-shadow: 0 3px 0 var(--sp-ink); }
+.auth-button:active:not(:disabled) { transform: translateY(6px); box-shadow: 0 0 0 var(--sp-ink); }
+.auth-button:disabled { opacity: .55; cursor: not-allowed; transform: translateY(3px); box-shadow: 0 3px 0 var(--sp-ink); }
+.auth-button:focus-visible, .auth-brand:focus-visible, .auth-switch a:focus-visible { outline: 3px solid var(--sp-royal); outline-offset: 3px; }
+.auth-switch { margin: 26px 0 0; text-align: center; font-size: 15.5px; color: #35508f; }
+.auth-switch a { margin-left: 6px; color: var(--sp-royal); font-weight: 800; text-decoration: none; border-bottom: 3px solid var(--sp-sun); transition: color .2s, border-color .2s; }
+.auth-switch a:hover { color: var(--sp-deep); border-color: var(--sp-orange); }
+@media (max-width: 500px) { .auth-card { padding: 30px 20px 32px; border-radius: 26px; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .auth-button, .auth-field input, .auth-brand svg { transition: none; } }
 `;
 
 const Login = () => {
@@ -99,15 +101,14 @@ const Login = () => {
       <div className="auth-card">
         <Link to="/" className="auth-brand" aria-label="StaticPengu home">
           <svg viewBox="0 0 64 64" aria-hidden="true">
-            <rect width="64" height="64" rx="18" fill="#0f1b45" />
-            <rect x=".75" y=".75" width="62.5" height="62.5" rx="17.25" fill="none" stroke="#7cc8ff" strokeOpacity=".5" strokeWidth="1.5" />
-            <path d="M32,12 C42,12 46,20 46,28 C52,36 52,50 32,56 C12,50 12,36 18,28 C18,20 22,12 32,12 Z" fill="#0b1536" />
-            <path d="M32,30 C41,30 45,38 45,44 C45,50 40,55 32,55 C24,55 19,50 19,44 C19,38 23,30 32,30 Z" fill="#fff" />
-            <ellipse cx="25" cy="24" rx="3" ry="3.4" fill="#fff" />
-            <ellipse cx="39" cy="24" rx="3" ry="3.4" fill="#fff" />
-            <circle cx="25.4" cy="24.4" r="1.4" fill="#05070f" />
-            <circle cx="38.6" cy="24.4" r="1.4" fill="#05070f" />
-            <path d="M28.5,29 L35.5,29 L32,36 Z" fill="#ffb347" />
+            <rect x="3" y="3" width="58" height="58" rx="18" fill="#5cc8ff" stroke="#0a1a4f" strokeWidth="4" />
+            <path d="M32 12 C43 12 49 21 49 31 C49 46 42 54 32 54 C22 54 15 46 15 31 C15 21 21 12 32 12Z" fill="#12307f" stroke="#0a1a4f" strokeWidth="3" />
+            <path d="M32 28 C40 29 44 36 43 43 C42 50 38 53 32 53 C26 53 22 50 21 43 C20 36 24 29 32 28Z" fill="#fff" stroke="#0a1a4f" strokeWidth="2.5" />
+            <ellipse cx="25.5" cy="24" rx="4.4" ry="5.2" fill="#fff" stroke="#0a1a4f" strokeWidth="2.5" />
+            <ellipse cx="38.5" cy="24" rx="4.4" ry="5.2" fill="#fff" stroke="#0a1a4f" strokeWidth="2.5" />
+            <circle cx="26.4" cy="25" r="2.2" fill="#0a1a4f" />
+            <circle cx="37.6" cy="25" r="2.2" fill="#0a1a4f" />
+            <path d="M28 29.5 Q32 27.5 36 29.5 Q35 34.5 32 35.5 Q29 34.5 28 29.5Z" fill="#ffb629" stroke="#0a1a4f" strokeWidth="2.2" strokeLinejoin="round" />
           </svg>
           <span>
             Static<span>Pengu</span>
