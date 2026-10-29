@@ -1,6 +1,6 @@
 import { useStore2 } from "../store/store2";
 
-export const API_URL = "http://localhost:3000";
+export const API_URL = "https://mc-lxcrvq0y7t.b-cdn.net";
 
 export type ApiResult<T = any> = {
   ok: boolean;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStore2 } from "../store/store2";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "https://mc-lxcrvq0y7t.b-cdn.net";
 const SIGNUP_ENDPOINT = `${API_URL}/api/auth/signup`;
 
 const css = `
