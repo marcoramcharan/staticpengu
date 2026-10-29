@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { api } from "../lib/api";
+import { useStore2 } from "../store/store2";
 import "../styles/components/navbar.css";
 
 const SECTION_LINKS = [
@@ -8,9 +10,26 @@ const SECTION_LINKS = [
   { id: "features", label: "Features" },
 ];
 
+// Styles for the logged-in bits (kept here so navbar.css doesn't need editing).
+const css = `
+.navbar-user { display: inline-flex; align-items: center; max-width: 220px; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--sp-pale); background: rgba(124,200,255,.1); border: 1px solid rgba(124,200,255,.25); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.navbar-logout { padding: 8px 18px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 600; color: #fff; background: rgba(255,255,255,.05); border: 1px solid rgba(191,227,255,.35); cursor: pointer; transition: background .2s, border-color .2s, opacity .2s; }
+.navbar-logout:hover:not(:disabled) { background: rgba(255,255,255,.12); border-color: rgba(191,227,255,.7); }
+.navbar-logout:disabled { opacity: .5; cursor: not-allowed; }
+.navbar-logout:focus-visible { outline: 3px solid var(--sp-cyan); outline-offset: 3px; }
+.navbar-menu-user { margin: 0 0 4px; font-size: 13.5px; font-weight: 600; color: var(--sp-pale); text-align: center; overflow-wrap: anywhere; }
+button.navbar-menu-btn { font: inherit; cursor: pointer; }
+@media (max-width: 860px) { .navbar-user, .navbar-logout { display: none; } }
+`;
+
 const Navbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const user = useStore2((s) => s.user);
   const [open, setOpen] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const dashboardPath = user?.id ? `/dashboard/${user.id}` : "/login";
 
   // close the menu whenever the route changes
   useEffect(() => {
@@ -47,11 +66,26 @@ const Navbar = () => {
     }
   };
 
+  const handleLogout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    setOpen(false);
+    try {
+      // clear the server cookie; even if this fails we still log out locally
+      await api("/api/auth/logout", { method: "POST" });
+    } finally {
+      useStore2.getState().logout();
+      setLoggingOut(false);
+      navigate("/login", { replace: true });
+    }
+  };
+
   const linkClass = (to: string) =>
     `navbar-link${pathname === to ? " active" : ""}`;
 
   return (
     <>
+      <style>{css}</style>
       <nav className="navbar">
         <div className="navbar-in">
           <Link to="/" className="navbar-brand" aria-label="StaticPengu home">
@@ -92,15 +126,41 @@ const Navbar = () => {
             <Link to="/guide" className="navbar-link">
               FAQ
             </Link>
+            {user && (
+              <Link
+                to={dashboardPath}
+                className={`navbar-link${pathname.startsWith("/dashboard") ? " active" : ""}`}
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
 
           <div className="navbar-actions">
-            <Link to="/login" className={linkClass("/login")}>
-              Login
-            </Link>
-            <Link to="/signup" className="navbar-cta">
-              Signup
-            </Link>
+            {user ? (
+              <>
+                <span className="navbar-user" title={user.email}>
+                  {user.email ?? `User #${user.id}`}
+                </span>
+                <button
+                  type="button"
+                  className="navbar-logout"
+                  onClick={handleLogout}
+                  disabled={loggingOut}
+                >
+                  {loggingOut ? "Logging out..." : "Log out"}
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className={linkClass("/login")}>
+                  Login
+                </Link>
+                <Link to="/signup" className="navbar-cta">
+                  Signup
+                </Link>
+              </>
+            )}
 
             <button
               type="button"
@@ -143,12 +203,31 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-menu-bottom">
-          <Link to="/signup" className="navbar-menu-btn">
-            Get started free
-          </Link>
-          <Link to="/login" className="navbar-menu-btn ghost">
-            Log in
-          </Link>
+          {user ? (
+            <>
+              <p className="navbar-menu-user">{user.email ?? `User #${user.id}`}</p>
+              <Link to={dashboardPath} className="navbar-menu-btn">
+                Dashboard
+              </Link>
+              <button
+                type="button"
+                className="navbar-menu-btn ghost"
+                onClick={handleLogout}
+                disabled={loggingOut}
+              >
+                {loggingOut ? "Logging out..." : "Log out"}
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/signup" className="navbar-menu-btn">
+                Get started free
+              </Link>
+              <Link to="/login" className="navbar-menu-btn ghost">
+                Log in
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>
